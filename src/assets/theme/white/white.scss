@@ -1,0 +1,25 @@
+.color {
+    color: rgb(80, 80, 80); // 石墨黑
+    background-color: #fffef9; // 乳白
+}
+
+@font-face {
+    font-family: "HYZhongXiuTiJ", "汉仪中秀体简";
+    src: '../white/HYZhongXiuTiJ.ttf'
+}
+
+.outer-shadow {
+    box-shadow: rgb(230, 230, 230) 0 0 3px;
+}
+
+.inner-shadow {
+    box-shadow: rgb(230, 230, 230) 0 0 3px inset;
+}
+
+.down-shadow {
+    box-shadow: rgb(230, 230, 230) 0 3px 3px;
+}
+
+.up-shadow {
+    box-shadow: rgb(230, 230, 230) 0 -3px 3px;
+}
