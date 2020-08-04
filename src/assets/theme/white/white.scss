@@ -10,6 +10,7 @@
 
 .font {
     font-family: '汉仪中秀体简';
+    font-weight: bold;
 }
 
 .outer-shadow {
@@ -17,7 +18,7 @@
 }
 
 .inner-shadow {
-    box-shadow: rgb(230, 230, 230) 0 0 3px inset;
+    box-shadow: rgb(230, 230, 230) 0 0 5px inset;
 }
 
 .down-shadow {

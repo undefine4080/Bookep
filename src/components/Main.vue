@@ -1,25 +1,27 @@
 <template>
-  <div class="main page wh-col-center font color">
+  <div class="main page font color">
     <option-bar :data="optBarData"></option-bar>
 
-    <div class="main-btns outer-shadow radiu">
-      <div class="main-btn color">
-        <router-link class="route-a" to="/record/payment">支出</router-link>
+    <div class="view-content wh-col-center">
+      <div class="main-btns outer-shadow radiu">
+        <div class="main-btn color">
+          <router-link class="route-a" to="/record/payment">支出</router-link>
+        </div>
+        <div class="main-btn color">
+          <router-link class="route-a" to="/record/income">收入</router-link>
+        </div>
       </div>
-      <div class="main-btn color">
-        <router-link class="route-a" to="/record/income">收入</router-link>
-      </div>
-    </div>
 
-    <div class="option-btns outer-shadow radiu">
-      <div class="option-btn color">
-        <router-link class="route-a" to="/balance">余额</router-link>
-      </div>
-      <div class="option-btn color">
-        <router-link class="route-a" to="/detail">明细</router-link>
-      </div>
-      <div class="option-btn color">
-        <router-link class="route-a" to="/statistic">统计</router-link>
+      <div class="option-btns outer-shadow radiu">
+        <div class="option-btn color">
+          <router-link class="route-a" to="/balance">余额</router-link>
+        </div>
+        <div class="option-btn color">
+          <router-link class="route-a" to="/detail">明细</router-link>
+        </div>
+        <div class="option-btn color">
+          <router-link class="route-a" to="/statistic">统计</router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -51,10 +53,6 @@ export default {
 </script>
 
 <style lang="scss">
-.main {
-  padding-top: 7%;
-}
-
 .main-btns {
   width: 55%;
   height: 55%;

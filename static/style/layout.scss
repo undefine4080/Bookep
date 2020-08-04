@@ -23,6 +23,20 @@
     }
 }
 
+.point {
+    cursor: pointer;
+    transition: all .3s;
+    &:hover {
+        background-color: rgb(238, 238, 238);
+    }
+}
+
+.view-content {
+    width: 100%;
+    height: 93%;
+    overflow: hidden;
+}
+
 @mixin row-layout {
     display: flex;
     flex-direction: row;
@@ -69,6 +83,12 @@
 .wh-col-center {
     @include col-layout;
     justify-content: center;
+    align-items: center;
+}
+
+.wh-col-around {
+    @include col-layout;
+    justify-content: space-around;
     align-items: center;
 }
 
