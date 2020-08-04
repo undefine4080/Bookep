@@ -15,7 +15,7 @@ export default {
   methods: {
       to(){
           if(this.data.route){
-              this.$router.push(data.route)
+              this.$router.push(this.data.route)
           }else{
               return
           }

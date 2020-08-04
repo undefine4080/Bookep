@@ -1,15 +1,19 @@
-.color {
-    color: rgb(80, 80, 80); // 石墨黑
-    background-color: #fffef9; // 乳白
+@font-face {
+    font-family: '汉仪中秀体简';
+    src: url('./HYZhongXiuTiJ.ttf') format("ttf")
 }
 
-@font-face {
-    font-family: "HYZhongXiuTiJ", "汉仪中秀体简";
-    src: '../white/HYZhongXiuTiJ.ttf'
+.color {
+    color: rgb(80, 80, 80); // 石墨黑
+    background-color: #ffffff; // 象牙白
+}
+
+.font {
+    font-family: '汉仪中秀体简';
 }
 
 .outer-shadow {
-    box-shadow: rgb(230, 230, 230) 0 0 3px;
+    box-shadow: rgb(210, 210, 210) 0 0 10px;
 }
 
 .inner-shadow {
@@ -22,4 +26,8 @@
 
 .up-shadow {
     box-shadow: rgb(230, 230, 230) 0 -3px 3px;
+}
+
+.radiu {
+    border-radius: 15px;
 }

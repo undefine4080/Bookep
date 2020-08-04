@@ -1,19 +1,3 @@
-.wh-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.w-center {
-    display: flex;
-    justify-content: center;
-}
-
-.h-center {
-    display: flex;
-    align-items: center;
-}
-
 .page {
     width: 100%;
     height: 100%;
@@ -22,7 +6,83 @@
     box-sizing: border-box;
 }
 
-.h-bottom {
+.route-a {
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    height: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: all 0.3s;
+    &:focus {
+        background-color: rgb(238, 238, 238);
+    }
+}
+
+@mixin row-layout {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+@mixin col-layout {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.wh-row-center {
+    @include row-layout;
+    justify-content: center;
+    align-items: center;
+}
+
+.w-row-center {
+    @include row-layout;
+    justify-content: center;
+}
+
+.h-row-center {
+    @include row-layout;
+    align-items: center;
+}
+
+.w-row-between {
+    @include row-layout;
+    justify-content: space-between;
+}
+
+.h-row-top {
+    @include row-layout;
+    align-items: flex-start;
+}
+
+.h-row-bottom {
+    @include row-layout;
     align-items: flex-end;
+}
+
+.wh-col-center {
+    @include col-layout;
+    justify-content: center;
+    align-items: center;
+}
+
+.w-col-center {
+    @include col-layout;
+    align-items: center;
+}
+
+.h-col-center {
+    @include col-layout;
+    justify-content: center;
+}
+
+.h-col-around {
+    @include col-layout;
+    justify-content: space-around;
 }

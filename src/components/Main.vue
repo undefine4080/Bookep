@@ -1,6 +1,27 @@
 <template>
-  <div class="main page color">
-    <option-bar :data="optBarData" class="down-shadow"></option-bar>
+  <div class="main page wh-col-center font color">
+    <option-bar :data="optBarData"></option-bar>
+
+    <div class="main-btns outer-shadow radiu">
+      <div class="main-btn color">
+        <router-link class="route-a" to="/record/payment">支出</router-link>
+      </div>
+      <div class="main-btn color">
+        <router-link class="route-a" to="/record/income">收入</router-link>
+      </div>
+    </div>
+
+    <div class="option-btns outer-shadow radiu">
+      <div class="option-btn color">
+        <router-link class="route-a" to="/balance">余额</router-link>
+      </div>
+      <div class="option-btn color">
+        <router-link class="route-a" to="/detail">明细</router-link>
+      </div>
+      <div class="option-btn color">
+        <router-link class="route-a" to="/statistic">统计</router-link>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -19,7 +40,6 @@ export default {
           icon: 'theme',
           route: '/theme'
         },
-        center:'中间',
         right: {
           icon: 'setting',
           route: '/setting'
@@ -31,5 +51,49 @@ export default {
 </script>
 
 <style lang="scss">
+.main {
+  padding-top: 7%;
+}
 
+.main-btns {
+  width: 55%;
+  height: 55%;
+  background-color: rgb(245, 245, 245);
+  margin-bottom: 10%;
+}
+
+.main-btn {
+  width: 100%;
+  height: 50%;
+  font-size: 1.5rem;
+  &:first-child {
+    border-radius: 15px 15px 0 0;
+    margin-bottom: 1px;
+  }
+  &:last-child {
+    border-radius: 0 0 15px 15px;
+  }
+}
+
+.option-btns {
+  width: 55%;
+  height: 6%;
+  background-color: rgb(245, 245, 245);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.option-btn {
+  align-items: center;
+  font-size: 0.9rem;
+  &:first-child {
+    border-radius: 15px 0 0 15px;
+  }
+  &:last-child {
+    border-radius: 0 15px 15px 0;
+  }
+  &:first-child + div {
+    margin: 0 1px;
+  }
+}
 </style>

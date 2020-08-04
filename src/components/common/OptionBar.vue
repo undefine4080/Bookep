@@ -1,8 +1,8 @@
 <template>
-  <div class="option-bar h-center color down-shadow">
+  <div class="option-bar w-row-between h-row-center">
     <icon-button :data="data.left"></icon-button>
-    <div class="title">{{data.center}}</div>
-    <icon-button :data="data.right" @handle="confirm"></icon-button>
+    <div class="page-title font">{{data.center}}</div>
+    <icon-button :data="data.right"></icon-button>
   </div>
 </template>
 
@@ -18,11 +18,6 @@ export default {
     data: {
       type: Object
     }
-  },
-  methods:{
-      confirm(){
-          return
-      }
   }
 }
 </script>
@@ -33,6 +28,6 @@ export default {
   height: 7%;
   position: absolute;
   z-index: 10;
-  justify-content: space-between;
+  top: 0;
 }
 </style>

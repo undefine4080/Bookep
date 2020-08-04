@@ -7,6 +7,7 @@ import store from './store'
 
 import '../static/style/layout.scss'
 import './assets/theme/white/white.scss'
+import '../static/style/animate.scss'
 
 Vue.config.productionTip = false
 
