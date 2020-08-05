@@ -4,6 +4,10 @@ import Router from 'vue-router'
 import Main from '@/components/Main.vue'
 import Record from '@/components/pages/record/Record.vue'
 import Balance from '@/components/pages/balance/Balance.vue'
+import Detail from '@/components/pages/detail/Detail.vue'
+
+import InAccount from '@/components/pages/detail/src/InAccount.vue'
+import InSequence from '@/components/pages/detail/src/InSequence.vue'
 
 Vue.use(Router)
 
@@ -18,14 +22,30 @@ export default new Router({
     }, {
         path: '/record/:id',
         component: Record,
-        props: 'true',
         children: [{
             path: 'payment',
         }, {
             path: 'income',
-        }, ]
+        }]
     }, {
         path: '/balance',
-        component: Balance
+        component: Balance,
+
+    }, {
+        path: '/detail',
+        component: Detail,
+        children: [{
+            path: '',
+            component: InSequence
+        }, {
+            path: 'time',
+            component: InSequence
+        }, {
+            path: 'account',
+            component: InAccount
+        }, {
+            path: 'amount',
+            component: InSequence
+        }]
     }]
 })

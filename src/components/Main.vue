@@ -1,6 +1,6 @@
 <template>
   <div class="main page font base-color">
-    <option-bar :data="optBarData"></option-bar>
+    <option-bar :data="optBarData" class="base-color"></option-bar>
 
     <div class="view-content wh-col-center">
       <div class="main-btns outer-shadow radiu">
@@ -17,7 +17,7 @@
           <router-link class="route-a" to="/balance">余额</router-link>
         </div>
         <div class="option-btn theme-color">
-          <router-link class="route-a" to="/detail">明细</router-link>
+          <router-link class="route-a" to="/detail/time">明细</router-link>
         </div>
         <div class="option-btn theme-color">
           <router-link class="route-a" to="/statistic">统计</router-link>
@@ -42,6 +42,7 @@ export default {
           icon: 'theme',
           route: '/theme'
         },
+        center: '',
         right: {
           icon: 'setting',
           route: '/setting'

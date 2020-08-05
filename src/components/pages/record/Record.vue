@@ -1,6 +1,6 @@
 <template>
   <div class="record page base-color font">
-    <option-bar :data="optBarData" class="down-shadow base-color"></option-bar>
+    <option-bar :data="optBarData" class="down-shadow theme-color"></option-bar>
     <div class="view-content wh-col-around">
       <card :data="cardData.amountCard"></card>
       <card v-if="whichCard" :data="cardData.useCard"></card>

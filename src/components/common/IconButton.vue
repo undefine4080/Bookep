@@ -1,26 +1,15 @@
 <template>
   <div class="icon-button" @click="$emit('handle')">
-    <div :class="`btn icon-${data.icon}`" @click="to"></div>
+    <div :class="`btn icon-${data.icon}`">
+      <router-link v-if="data.route" :to="data.route" class="router-btn"></router-link>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'IconButton',
-  props: {
-    data: {
-      type: Object
-    }
-  },
-  methods: {
-      to(){
-          if(this.data.route){
-              this.$router.push(this.data.route)
-          }else{
-              return
-          }
-      }
-  }
+  props: ['data']
 }
 </script>
 
@@ -38,12 +27,20 @@ export default {
   height: 100%;
   display: block;
   box-sizing: border-box;
+  cursor: pointer;
+  transition: all .3s;
   background: {
     size: contain;
     position: center;
     repeat: no-repeat;
     clip: content-box;
   }
+}
+
+.router-btn{
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .icon-account {
@@ -58,8 +55,8 @@ export default {
   background-image: url('../../../static/iconFont/confirm.png');
 }
 
-.icon-sequence {
-  background-image: url('../../../static/iconFont/sequence.png');
+.icon-amount {
+  background-image: url('../../../static/iconFont/amount.png');
 }
 
 .icon-setting {

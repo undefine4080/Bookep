@@ -1,6 +1,6 @@
 <template>
   <div class="select-box base-color radiu">
-    <div class="select-title select-bar down-shadow wh-row-center">标题</div>
+    <div class="select-title select-bar down-shadow wh-row-center theme-color">标题</div>
     <div class="select-area">
       <div class="select-item wh-row-center point">项目一</div>
     </div>

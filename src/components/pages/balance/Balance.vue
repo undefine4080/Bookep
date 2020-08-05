@@ -1,6 +1,6 @@
 <template>
   <div class="balance page font base-color">
-    <option-bar :data="optBarData" class="down-shadow base-color"></option-bar>
+    <option-bar :data="optBarData" class="down-shadow theme-color"></option-bar>
     <div class="balance-cards view-content">
       <div class="balance-card outer-shadow radiu theme-color">
         <div class="balance-card-item wh-row-center">支付宝</div>

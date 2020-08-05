@@ -1,20 +1,20 @@
 @font-face {
-    font-family: '汉仪中秀体简';
-    src: url('./HYZhongXiuTiJ.ttf') format("ttf")
+    font-family: 'Hanyi';
+    src: url("../../../assets/theme/white/HYZhongXiuTiJ.ttf") format("ttf")
 }
 
 .theme-color {
     color: rgb(80, 80, 80); // 石墨黑
-    background-color: #ffffff; // 象牙白
+    background-image: linear-gradient(to bottom, #fcfcfc, #ffffff, #fcfcfc);
 }
 
 .base-color {
     color: rgb(80, 80, 80); // 石墨黑
-    background-color: #ffffff; // 象牙白
+    background-image: repeating-linear-gradient(45deg, #ffffff 20px, #fafafa 20px, #ffffff 20px, #fafafa 20px, #ffffff 30px);
 }
 
 .font {
-    font-family: '汉仪中秀体简';
+    font-family: 'Hanyi';
     font-weight: bold;
 }
 
