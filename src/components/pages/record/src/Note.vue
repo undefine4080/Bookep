@@ -1,8 +1,8 @@
 <template>
-  <div class="note">
+  <div class="note base-color">
     <div class="note-tip wh-row-center">请输入备注：</div>
     <div class="note-input h-row-center">
-      <input id="note-input" class="color inner-shadow" type="text" />
+      <input id="note-input" class="theme-color inner-shadow" type="text" />
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
-  <div class="key-board color">
-      <div class="key wh-row-center font outer-shadow point" v-for="(key, index) in keyCode" :key="index">{{key}}</div>
+  <div class="key-board base-color">
+      <div class="key wh-row-center font outer-shadow point theme-color" v-for="(key, index) in keyCode" :key="index">{{key}}</div>
   </div>
 </template>
 

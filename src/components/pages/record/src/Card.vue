@@ -1,7 +1,7 @@
 <template>
   <div class="card radiu w-row-center outer-shadow">
-    <div class="card-title color wh-col-center">{{data.title}}</div>
-    <div class="card-btn color wh-row-center">{{data.btn}}</div>
+    <div class="card-title base-color wh-col-center">{{data.title}}</div>
+    <div class="card-btn base-color wh-row-center">{{data.btn}}</div>
   </div>
 </template>
 

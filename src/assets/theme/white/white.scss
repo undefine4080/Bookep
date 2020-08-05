@@ -3,7 +3,12 @@
     src: url('./HYZhongXiuTiJ.ttf') format("ttf")
 }
 
-.color {
+.theme-color {
+    color: rgb(80, 80, 80); // 石墨黑
+    background-color: #ffffff; // 象牙白
+}
+
+.base-color {
     color: rgb(80, 80, 80); // 石墨黑
     background-color: #ffffff; // 象牙白
 }

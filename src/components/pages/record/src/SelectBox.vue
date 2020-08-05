@@ -1,12 +1,12 @@
 <template>
-  <div class="select-box color radiu">
+  <div class="select-box base-color radiu">
     <div class="select-title select-bar down-shadow wh-row-center">标题</div>
     <div class="select-area">
       <div class="select-item wh-row-center point">项目一</div>
     </div>
     <div class="select-btns select-bar up-shadow wh-row-center">
-      <div class="select-btn wh-row-center color point">取消</div>
-      <div class="select-btn wh-row-center color point">确定</div>
+      <div class="select-btn wh-row-center theme-color point">取消</div>
+      <div class="select-btn wh-row-center theme-color point">确定</div>
     </div>
   </div>
 </template>

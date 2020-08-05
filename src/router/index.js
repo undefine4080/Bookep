@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import Main from '@/components/Main.vue'
 import Record from '@/components/pages/record/Record.vue'
+import Balance from '@/components/pages/balance/Balance.vue'
 
 Vue.use(Router)
 
@@ -23,5 +24,8 @@ export default new Router({
         }, {
             path: 'income',
         }, ]
+    }, {
+        path: '/balance',
+        component: Balance
     }]
 })

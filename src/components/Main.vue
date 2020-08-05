@@ -1,25 +1,25 @@
 <template>
-  <div class="main page font color">
+  <div class="main page font base-color">
     <option-bar :data="optBarData"></option-bar>
 
     <div class="view-content wh-col-center">
       <div class="main-btns outer-shadow radiu">
-        <div class="main-btn color">
+        <div class="main-btn theme-color">
           <router-link class="route-a" to="/record/payment">支出</router-link>
         </div>
-        <div class="main-btn color">
+        <div class="main-btn theme-color">
           <router-link class="route-a" to="/record/income">收入</router-link>
         </div>
       </div>
 
       <div class="option-btns outer-shadow radiu">
-        <div class="option-btn color">
+        <div class="option-btn theme-color">
           <router-link class="route-a" to="/balance">余额</router-link>
         </div>
-        <div class="option-btn color">
+        <div class="option-btn theme-color">
           <router-link class="route-a" to="/detail">明细</router-link>
         </div>
-        <div class="option-btn color">
+        <div class="option-btn theme-color">
           <router-link class="route-a" to="/statistic">统计</router-link>
         </div>
       </div>
