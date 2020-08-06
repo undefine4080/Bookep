@@ -49,6 +49,9 @@
     height: 93%;
     overflow-y: auto;
     box-sizing: border-box;
+    &::-webkit-scrollbar {
+        width: 0;
+    }
 }
 
 .option-content {
@@ -95,7 +98,6 @@
 
 .w-row-between {
     @include row-layout;
-
     justify-content: space-between;
 }
 

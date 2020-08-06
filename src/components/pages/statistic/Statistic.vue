@@ -14,7 +14,7 @@
       </div>
 
       <div class="charts radiu outer-shadow theme-color">
-        <div class="chart-title wh-row-center">支出账户图</div>
+        <div class="chart-title wh-row-center mark">支出账户图</div>
         <div id="block-map" class="chart-content wh-row-center"></div>
       </div>
     </div>
@@ -107,5 +107,7 @@
 .chart-content {
   width: 100%;
   height: 90%;
+  border-radius: 0 0 15px 15px;
+  overflow: hidden;
 }
 </style>
