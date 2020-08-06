@@ -1,6 +1,6 @@
 <template>
   <div class="detail-bar theme-color outer-shadow font">
-    <div class="detail-bar-date h-row-center">
+    <div class="detail-bar-date mark h-row-center">
       <span>下午2：30</span>
       <span>2020/8/4</span>
     </div>
@@ -37,7 +37,6 @@ export default {
 .detail-bar-date {
   border-radius: 8px 8px 0 0;
   justify-content: space-between;
-  background-color: #eef7f2;
 }
 
 .detail-bar-date,

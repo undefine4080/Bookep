@@ -9,6 +9,9 @@ import '../static/style/layout.scss'
 import './assets/theme/white/white.scss'
 import '../static/style/animate.scss'
 
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts;
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

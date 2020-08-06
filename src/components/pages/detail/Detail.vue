@@ -46,8 +46,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.detail-area {
-}
-</style>

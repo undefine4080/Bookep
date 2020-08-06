@@ -4,6 +4,7 @@
     margin: 0 auto;
     padding: 0;
     box-sizing: border-box;
+
     &::-webkit-scrollbar {
         width: 0;
     }
@@ -21,6 +22,7 @@
     font-weight: bold;
     letter-spacing: 2px;
     transition: all 0.3s;
+
     &:focus {
         background-color: rgb(238, 238, 238);
     }
@@ -29,6 +31,7 @@
 .point {
     cursor: pointer;
     transition: all .3s;
+
     &:hover {
         background-color: rgb(238, 238, 238);
     }
@@ -53,6 +56,7 @@
     height: 86%;
     overflow-y: auto;
     box-sizing: border-box;
+
     &::-webkit-scrollbar {
         width: 0;
     }
@@ -72,58 +76,69 @@
 
 .wh-row-center {
     @include row-layout;
+
     justify-content: center;
     align-items: center;
 }
 
 .w-row-center {
     @include row-layout;
+
     justify-content: center;
 }
 
 .h-row-center {
     @include row-layout;
+
     align-items: center;
 }
 
 .w-row-between {
     @include row-layout;
+
     justify-content: space-between;
 }
 
 .h-row-top {
     @include row-layout;
+
     align-items: flex-start;
 }
 
 .h-row-bottom {
     @include row-layout;
+
     align-items: flex-end;
 }
 
 .wh-col-center {
     @include col-layout;
+
     justify-content: center;
     align-items: center;
 }
 
 .wh-col-around {
     @include col-layout;
+
     justify-content: space-around;
     align-items: center;
 }
 
 .w-col-center {
     @include col-layout;
+
     align-items: center;
 }
 
 .h-col-center {
     @include col-layout;
+
     justify-content: center;
 }
 
 .h-col-around {
     @include col-layout;
+
     justify-content: space-around;
 }
