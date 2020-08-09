@@ -1,12 +1,22 @@
 <template>
-  <div class="pop-box page">
+  <div class="pop-box page" @click="close">
     <slot></slot>
   </div>
 </template>
 
 <script>
+import {mapState} from 'vuex'
+
 export default {
-  name: 'PopBox'
+  name: 'PopBox',
+  computed: {
+    ...mapState(['recordPageData'])
+  },
+  methods: {
+    close(){
+      this.$emit('handle')
+    }
+  }
 }
 </script>
 

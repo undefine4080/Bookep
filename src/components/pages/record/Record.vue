@@ -1,25 +1,30 @@
 <template>
-  <div class="record page base-color font">
-    <option-bar :data="optBarData" class="down-shadow theme-color"></option-bar>
+<div class="record page base-color font">
+    <option-bar :data="optBarData" class="down-shadow theme-color" @messageTo="addRecord"></option-bar>
+
     <div class="view-content wh-col-around">
-      <card :data="cardData.amountCard"></card>
-      <card v-if="whichCard" :data="cardData.useCard"></card>
-      <card v-if="!whichCard" :data="cardData.originCard"></card>
-      <card :data="cardData.accountCard"></card>
-      <note></note>
+        <card :title="cardData.amountCard" @handle="openPopBox('keyboard')"></card>
+
+        <card v-if="whichCard" :title="cardData.useCard" @handle="openPopBox('usebox')"></card>
+
+        <card v-else :title="cardData.originCard" @handle="openPopBox('originbox')"></card>
+
+        <card :title="cardData.accountCard" @handle="openPopBox('accountbox')"></card>
+
+        <note ref="noteComp"></note>
     </div>
 
-    <pop-box class="wh-row-center" v-if="popBoxOpenFlag.selectBox">
-      <select-box></select-box>
+    <pop-box v-if="recordPageData.popBoxOpenFlag" @handle="closePopBox" :class="{'wh-row-center': recordPageData.selectBoxFlag.openFlag, 'h-row-bottom': recordPageData.keyBoardOpenFlag}">
+        <select-box v-if="recordPageData.selectBoxFlag.openFlag" :data="recordPageData.selectBoxFlag"></select-box>
+        <key-board v-if="recordPageData.keyBoardOpenFlag"></key-board>
     </pop-box>
-    <pop-box class="h-row-bottom" v-if="popBoxOpenFlag.keyBoard">
-      <key-board></key-board>
-    </pop-box>
-  </div>
+</div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import {
+    mapState
+} from 'vuex'
 
 import OptionBar from '../../common/OptionBar.vue'
 import Card from './src/Card.vue'
@@ -29,66 +34,73 @@ import SelectBox from './src/SelectBox.vue'
 import keyBoard from './src/KeyBoard.vue'
 
 export default {
-  name: 'Record',
-  components: {
-    OptionBar,
-    Card,
-    Note,
-    PopBox,
-    SelectBox,
-    keyBoard
-  },
-  data() {
-    return {
-      popBoxOpenFlag: {
-        selectBox: false,
-        keyBoard: false
-      },
-      optBarData: {
-        left: {
-          icon: 'back',
-          route: '/main'
-        },
-        center: `${(function(id) {
+    name: 'Record',
+    components: {
+        OptionBar,
+        Card,
+        Note,
+        PopBox,
+        SelectBox,
+        keyBoard
+    },
+    data() {
+        return {
+            optBarData: {
+                left: {
+                    icon: 'back',
+                    route: '/main'
+                },
+                center: `${(function(id) {
           if (id == 'payment') {
             return '支出'
           } else {
             return '收入'
           }
         })(this.$route.params.id)}`,
-        right: {
-          icon: 'confirm'
+                right: {
+                    icon: 'confirm'
+                }
+            },
+            cardData: {
+                amountCard: '金额', 
+                originCard:  '来源',     
+                useCard:  '用途',
+                accountCard: '账户'
+            }
         }
-      },
-      cardData: {
-        amountCard: {
-          title: '金额',
-          btn: 0
-        },
-        originCard: {
-          title: '来源',
-          btn: '工资'
-        },
-        useCard: {
-          title: '用途',
-          btn: '购物'
-        },
-        accountCard: {
-          title: '账户',
-          btn: '支付宝'
+    },
+    computed: {
+        ...mapState(['recordPageData','curRecordData']),
+        whichCard() {
+            if (this.$route.params.id == 'payment') {
+                return true
+            } else {
+                return false
+            }
         }
-      }
+    },
+    methods: {
+        openPopBox(flag) {
+            this.$store.commit('openPopBox', flag)
+        },
+        closePopBox() {
+            this.$store.commit('closePopBox')
+        },
+        addRecord(){
+            this.$refs.noteComp.commitNote()
+            
+            const newRecord = {
+                account: this.curRecordData.account,
+                time: new Date().toLocaleString(),
+                use: this.curRecordData.use,
+                origin: this.curRecordData.origin,
+                amount: parseFloat(this.curRecordData.amount),
+                note: this.curRecordData.note
+            }
+
+            console.table(newRecord)
+        }
     }
-  },
-  computed: {
-    whichCard() {
-      if (this.$route.params.id == 'payment') {
-        return true
-      } else {
-        return false
-      }
-    }
-  }
 }
 </script>
 

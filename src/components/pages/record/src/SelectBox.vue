@@ -1,63 +1,75 @@
 <template>
-  <div class="select-box base-color radiu">
-    <div class="select-title select-bar down-shadow wh-row-center theme-color">标题</div>
+<div class="select-box base-color radiu">
+    <div class="select-title select-bar down-shadow wh-row-center base-color">{{selectBoxTitle}}</div>
     <div class="select-area">
-      <div class="select-item wh-row-center point">项目一</div>
+        <div class="select-item wh-row-center base-color point" v-for="(item, index) in data.dataSource" :key="index" @click.stop="commitData(item)">{{item}}</div>
     </div>
-    <div class="select-btns select-bar up-shadow wh-row-center">
-      <div class="select-btn wh-row-center theme-color point">取消</div>
-      <div class="select-btn wh-row-center theme-color point">确定</div>
-    </div>
-  </div>
+    <div class="select-btn select-bar up-shadow wh-row-center point">取消</div>
+</div>
 </template>
 
 <script>
 export default {
-  name: 'SelectBox'
+    name: 'SelectBox',
+    props: {
+        data: {
+            type: Object
+        }
+    },
+    methods: {
+        commitData(item) {
+           this.$store.commit('syncRecord', {
+                    title: this.data.whichBox,
+                    data: item
+                })
+
+            this.$store.commit('closePopBox')
+        }
+    },
+    computed: {
+        selectBoxTitle() {
+            if (this.data.whichBox == 'use') {
+                return '用途'
+            } else if (this.data.whichBox == 'origin') {
+                return '来源'
+            }
+        }
+    }
 }
 </script>
 
 <style lang="scss">
 .select-box {
-  width: 60%;
-  height: 45%;
+    width: 60%;
+    height: 45%;
 }
 
 .select-bar {
-  height: 10%;
-  width: 100%;
+    height: 10%;
+    width: 100%;
 }
 
 .select-title {
-  border-radius: 15px 15px 0 0;
-}
-
-.select-btns {
-  background-color: rgb(235, 235, 235);
-  border-radius: 0 0 15px 15px;
+    border-radius: 15px 15px 0 0;
+    position: relative;
+    z-index: 100;
 }
 
 .select-btn {
-    width: 50%;
-    height: 100%;
-  &:first-child {
-    border-radius: 0 0 0 15px;
-    margin-right: 1px;
-  }
-  &:last-child {
-    border-radius: 0 0 15px 0;
-  }
+    width: 100%;
+    border-radius: 0 0 15px 15px;
 }
 
 .select-area {
-  width: 100%;
-  height: 80%;
-  overflow-y: auto;
+    width: 100%;
+    height: 80%;
+    overflow-y: auto;
+    
 }
 
-.select-item{
+.select-item {
     width: 100%;
     height: 15%;
-    border-bottom: 1px solid  rgb(235, 235, 235);
+    border-bottom: 1px solid rgb(235, 235, 235);
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="icon-button" @click="$emit('handle')">
-    <div :class="`btn icon-${data.icon}`">
+    <div :class="`btn icon-${data.icon}`" @click="handle">
       <router-link v-if="data.route" :to="data.route" class="router-btn"></router-link>
     </div>
   </div>
@@ -9,7 +9,12 @@
 <script>
 export default {
   name: 'IconButton',
-  props: ['data']
+  props: ['data'],
+  methods: {
+    handle(){
+      this.$emit('handle')
+    }
+  }
 }
 </script>
 

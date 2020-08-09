@@ -1,29 +1,65 @@
 <template>
-  <div class="card radiu w-row-center outer-shadow">
-    <div class="card-title theme-color wh-col-center">{{data.title}}</div>
-    <div class="card-btn theme-color wh-row-center">{{data.btn}}</div>
-  </div>
+<div class="card radiu w-row-center outer-shadow" @click="openPopBox">
+    <div class="card-title theme-color wh-col-center">{{title}}</div>
+    <div class="card-btn theme-color wh-row-center">{{cardContent}}</div>
+</div>
 </template>
 
 <script>
+import {
+    mapState
+} from 'vuex'
+
 export default {
-  name: 'Card',
-  props: {
-      data:{
-          type: Object
-      }
-  }
+    name: 'Card',
+    props: {
+        title: {
+            type: String
+        }
+    },
+    methods: {
+        openPopBox() {
+            this.$emit('handle')
+        }
+    },
+    computed: {
+        ...mapState(['curRecordData']),
+        cardContent() {
+            switch (this.title) {
+                case '金额':
+                    return this.curRecordData.amount
+                    break
+
+                case '来源':
+                    return this.curRecordData.origin
+                    break
+
+                case '用途':
+                    return this.curRecordData.use
+                    break
+
+                case '账户':
+                    return this.curRecordData.account
+                    break
+            }
+        }
+    },
+    data() {
+        return{
+          amount: 0
+        }
+    }
 }
 </script>
 
 <style lang="scss">
 .card {
-  width: 70%;
-  height: 16%;
-  background-color: rgb(240, 240, 240);
+    width: 70%;
+    height: 16%;
+    background-color: rgb(240, 240, 240);
 }
 
-.card-title{
+.card-title {
     width: 18%;
     height: 100%;
     border-radius: 15px 0 0 15px;
@@ -32,7 +68,7 @@ export default {
     font-weight: 500;
 }
 
-.card-btn{
+.card-btn {
     width: 82%;
     height: 100%;
     border-radius: 0 15px 15px 0;

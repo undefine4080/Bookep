@@ -5,7 +5,7 @@
     <icon-button v-if="isCenterIcon" :data="data.center"></icon-button>
     <div v-else class="page-title font">{{data.center}}</div>
 
-    <icon-button :data="data.right"></icon-button>
+    <icon-button :data="data.right" @handle="messageTo"></icon-button>
   </div>
 </template>
 
@@ -31,6 +31,11 @@ export default {
       }else{
         return false
       }
+    }
+  },
+  methods: {
+    messageTo(){
+      this.$emit('messageTo')
     }
   }
 }
