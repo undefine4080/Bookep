@@ -1,6 +1,6 @@
 <template>
 <div class="record page base-color font">
-    <option-bar :data="optBarData" class="down-shadow theme-color" @messageTo="addRecord"></option-bar>
+    <option-bar :data="optBarData" class="down-shadow theme-color" @confirm="addRecord"></option-bar>
 
     <div class="view-content wh-col-around">
         <card :title="cardData.amountCard" @handle="openPopBox('keyboard')"></card>
@@ -32,6 +32,8 @@ import Note from './src/Note.vue'
 import PopBox from '../../common/PopBox.vue'
 import SelectBox from './src/SelectBox.vue'
 import keyBoard from './src/KeyBoard.vue'
+
+import DB from '../../../api/db.js'
 
 export default {
     name: 'Record',
@@ -98,7 +100,13 @@ export default {
                 note: this.curRecordData.note
             }
 
-            console.table(newRecord)
+            DB.add('record', newRecord)
+
+            this.$store.commit('initRecordView')
+
+            this.$router.push('/main')
+
+            console.log('添加数据成功')
         }
     }
 }

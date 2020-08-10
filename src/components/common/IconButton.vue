@@ -1,5 +1,5 @@
 <template>
-  <div class="icon-button" @click="$emit('handle')">
+  <div class="icon-button">
     <div :class="`btn icon-${data.icon}`" @click="handle">
       <router-link v-if="data.route" :to="data.route" class="router-btn"></router-link>
     </div>

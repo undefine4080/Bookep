@@ -1,51 +1,106 @@
-function initDB(event, dbName) {
-    let db = event.target.result
+export default {
+    // indexedDB兼容
+    indexedDB: window.indexedDB || window.webkitindexedDB || window.msIndexedDB || mozIndexedDB,
 
-    let objectStore = db.createObjectStore(dbName, {
-        keyPath: 'id',
-        autoIncrement: true
-    })
+    db: null,
 
-    // 新建索引
-    objectStore.createIndex('account', 'account', {
-        unique: true
-    })
-    objectStore.createIndex('time', 'time', {
-        unique: false
-    })
-    objectStore.createIndex('use', 'use', {
-        unique: false
-    })
-    objectStore.createIndex('origin', 'origin', {
-        unique: false
-    })
-    objectStore.createIndex('amount', 'amount', {
-        unique: false
-    })
-    objectStore.createIndex('note', 'note', {
-        unique: false
-    })
-    objectStore.createIndex('id', 'id', {
-        unique: true
-    });
+    dbName: 'bookep',
 
-    console.log("还没有数据库，数据初始化成功", db)
+    dbVersion: 1,
+
+    openDB: function () {
+        const request = this.indexedDB.open(this.dbName, this.dbVersion)
+
+        request.onerror = function (event) {
+            console.log('IndexedDB数据库打开错误', event)
+        }
+
+        // 二次打开，成功打开数据库的回调
+        let self = this
+
+        request.onsuccess = function (event) {
+            self.db = event.target.result
+        }
+
+        // 初次打开，会调用的方法
+        request.onupgradeneeded = function (event) {
+            // 临时开启的 IDB对象
+            let db = event.target.result
+
+            const newStoreName = ['record','balance']
+
+            db.onerror = function (event) {
+                console.log('数据库打开失败')
+            }
+
+            // 创建一个数据库存储对象
+            newStoreName.forEach(item => {
+                switch (item){
+                    case 'record':
+                        if (!db.objectStoreNames.contains(item)) {
+                            let objectStore = db.createObjectStore(item, {
+                                keyPath: 'id',
+                                autoIncrement: true
+                            })
+            
+                            // 新建索引
+                            objectStore.createIndex('account', 'account', {
+                                unique: false
+                            })
+                            objectStore.createIndex('time', 'time', {
+                                unique: false
+                            })
+                            objectStore.createIndex('use', 'use', {
+                                unique: false
+                            })
+                            objectStore.createIndex('origin', 'origin', {
+                                unique: false
+                            })
+                            objectStore.createIndex('amount', 'amount', {
+                                unique: false
+                            })
+                            objectStore.createIndex('note', 'note', {
+                                unique: false
+                            })
+                            objectStore.createIndex('id', 'id', {
+                                unique: true
+                            });
+            
+                            console.log("对象仓库 record 初始化成功")
+                        }
+                    break
+
+                    case 'balance':
+                        if (!db.objectStoreNames.contains(item)) {
+                            let objectStore = db.createObjectStore(item, {
+                                keyPath: 'id',
+                                autoIncrement: true
+                            })
+            
+                            // 新建索引
+                            objectStore.createIndex('account', 'account', {
+                                unique: false
+                            })
+                            objectStore.createIndex('volume', 'volume', {
+                                unique: false
+                            })
+                            objectStore.createIndex('id', 'id', {
+                                unique: true
+                            })
+
+                            console.log("对象仓库 balance 初始化成功")
+                        }
+                }
+                
+            })
+            
+
+        }
+    },
+    add(storeName, newItem){
+        let transaction = this.db.transaction(storeName, "readwrite")
+        console.log("获取事务对象", transaction)
+        const objectStore = transaction.objectStore(storeName)
+        objectStore.add(newItem)
+    }
 }
-
-function add(localDB, DBOpenRequest,dbName, newItem) {
-    // 存储数据结果
-    localDB = DBOpenRequest.result
-    // 创建事务
-    // let transaction = localDB.transaction(, "readwrite")
-    // 打开存储对象
-    // var objectStore = transaction.objectStore(dbName)
-    // 添加到数据对象中
-    // objectStore.add(newItem)
-
-    localDB.transaction(dbName, "readwrite").objectStore(dbName).add(newItem)
-
-    // 做其他事情...
-    console.log('插入数据成功', localDB)
-}
-
-export { initDB, add }

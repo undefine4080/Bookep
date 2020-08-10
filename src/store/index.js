@@ -12,12 +12,12 @@ export default new Vuex.Store({
         account: ['支付宝', '微信', '现金', '工商银行', '建设银行', '农业银行', '中国银行', '招商银行'],
 
         curRecordData: {
-            amount: '250',
-            origin: '工资',
-            use: '交通',
-            account: '支付宝',
-            note: '',
-            time: ''
+            amount: '0',
+            origin: null || '工资',
+            use: null || '交通',
+            account: null || '支付宝',
+            note: null,
+            time: null
         },
 
         recordPageData: {
@@ -68,10 +68,12 @@ export default new Vuex.Store({
 
                 case 'origin':
                     state.curRecordData.origin = commit.data
+                    state.curRecordData.use = null
                     break
 
                 case 'use':
                     state.curRecordData.use = commit.data
+                    state.curRecordData.origin = null
                     break
 
                 case 'account':
@@ -81,6 +83,16 @@ export default new Vuex.Store({
                 case 'note':
                     state.curRecordData.note = commit.data
                     break
+            }
+        },
+        initRecordView(state) {
+            state.curRecordData = {
+                amount: '0',
+                origin: null || '工资',
+                use: null || '交通',
+                account: null || '支付宝',
+                note: null,
+                time: null
             }
         }
     }

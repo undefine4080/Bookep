@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     messageTo(){
-      this.$emit('messageTo')
+      this.$emit('confirm')
     }
   }
 }
