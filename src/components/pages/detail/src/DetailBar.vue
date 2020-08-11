@@ -1,27 +1,37 @@
 <template>
   <div class="detail-bar theme-color outer-shadow font">
     <div class="detail-bar-date mark h-row-center">
-      <span>下午2：30</span>
-      <span>2020/8/4</span>
+      <span>{{time}}</span>
+      <span>{{date}}</span>
     </div>
     <div class="detail-bar-info">
-      <div class="detail-bar-money">256</div>
-      <div>支付宝</div>
-      <div>工资</div>
+      <div class="detail-bar-money">{{data.amount}}</div>
+      <div>{{data.account}}</div>
+      <div>{{data.use || data.origin}}</div>
     </div>
     <div class="detail-bar-note h-row-center">
-      <span>下班后去买了一条咸鱼下班后去买了一条咸鱼下班后去买了一条咸鱼下班后去买了一条咸鱼下班后去买了一条咸鱼</span>
+      <span>{{data.note}}</span>
     </div>
   </div>
 </template>
 
 <script>
+
+
 export default {
     name: 'DetailBar',
     props: {
-        data: {
-            type: Object
-        }
+      data: {
+        type: Object
+      }
+    },
+    computed: {
+      time(){
+        return this.data.time.slice(10, 20)
+      },
+      date(){
+        return this.data.time.slice(0, 9)
+      }
     }
 }
 </script>
@@ -41,7 +51,7 @@ export default {
 
 .detail-bar-date,
 .detail-bar-note {
-  height: 25%;
+  min-height: 25%;
   font-size: 0.5rem;
   padding: 0 12px;
   

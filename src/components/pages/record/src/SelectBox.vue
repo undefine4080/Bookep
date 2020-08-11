@@ -4,7 +4,7 @@
     <div class="select-area">
         <div class="select-item wh-row-center base-color point" v-for="(item, index) in data.dataSource" :key="index" @click.stop="commitData(item)">{{item}}</div>
     </div>
-    <div class="select-btn select-bar up-shadow wh-row-center point">取消</div>
+    <div class="select-btn select-bar up-shadow wh-row-center point" @click="$store.commit('closePopBox')">取消</div>
 </div>
 </template>
 
@@ -32,6 +32,8 @@ export default {
                 return '用途'
             } else if (this.data.whichBox == 'origin') {
                 return '来源'
+            }else{
+                return '账户'
             }
         }
     }

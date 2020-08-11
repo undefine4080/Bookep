@@ -64,15 +64,15 @@ export default {
                 }
             },
             cardData: {
-                amountCard: '金额', 
-                originCard:  '来源',     
-                useCard:  '用途',
+                amountCard: '金额',
+                originCard: '来源',
+                useCard: '用途',
                 accountCard: '账户'
             }
         }
     },
     computed: {
-        ...mapState(['recordPageData','curRecordData']),
+        ...mapState(['recordPageData', 'curRecordData']),
         whichCard() {
             if (this.$route.params.id == 'payment') {
                 return true
@@ -88,15 +88,23 @@ export default {
         closePopBox() {
             this.$store.commit('closePopBox')
         },
-        addRecord(){
+        addRecord() {
             this.$refs.noteComp.commitNote()
-            
+
+            let realAmount = ((flag) => {
+                if (flag !== null) {
+                    return -parseFloat(this.curRecordData.amount)
+                } else {
+                    return parseFloat(this.curRecordData.amount)
+                }
+            })(this.curRecordData.use)
+
             const newRecord = {
                 account: this.curRecordData.account,
                 time: new Date().toLocaleString(),
                 use: this.curRecordData.use,
                 origin: this.curRecordData.origin,
-                amount: parseFloat(this.curRecordData.amount),
+                amount: realAmount,
                 note: this.curRecordData.note
             }
 

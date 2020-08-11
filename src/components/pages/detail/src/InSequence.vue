@@ -1,33 +1,31 @@
 <template>
   <div class="in-sequence">
-      <!-- <div class="sequence-item" v-if="routeFlag">{{time}}</div>
-      <div class="sequence-item" v-if="!routeFlag">{{amount}}</div> -->
-      <detail-bar></detail-bar>
+      <detail-bar :data="dataItem" v-for="(dataItem, index) in detailData" :key="index"></detail-bar>
   </div>
 </template>
 
 <script>
 import DetailBar from '../src/DetailBar.vue'
 
+import {mapGetters} from 'vuex'
+
 export default {
     name: 'InSequence',
     components: {
         DetailBar
     },
-    data(){
-        return{
-            time: '按时间',
-            amount: '按大小'
-        }
-    },
     computed: {
-        routeFlag(){
+        detailData(){
             if(this.$route.path == '/detail/time'){
-                return true
+                return this.inTimeData
             }else if(this.$route.path == '/detail/amount'){
-                return false
+                return this.inAmountData
             }
-        }
+        },
+        ...mapGetters(['inTimeData', 'inAmountData']),
+    },
+    created(){
+        console.log('载入全局数据')
     }
 }
 </script>

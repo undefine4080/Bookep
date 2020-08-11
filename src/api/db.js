@@ -27,22 +27,22 @@ export default {
             // 临时开启的 IDB对象
             let db = event.target.result
 
-            const newStoreName = ['record','balance']
+            const newStoreName = ['record', 'balance']
 
             db.onerror = function (event) {
                 console.log('数据库打开失败')
             }
 
-            // 创建一个数据库存储对象
+            // 创建数据库存储对象
             newStoreName.forEach(item => {
-                switch (item){
+                switch (item) {
                     case 'record':
                         if (!db.objectStoreNames.contains(item)) {
                             let objectStore = db.createObjectStore(item, {
                                 keyPath: 'id',
                                 autoIncrement: true
                             })
-            
+
                             // 新建索引
                             objectStore.createIndex('account', 'account', {
                                 unique: false
@@ -65,10 +65,10 @@ export default {
                             objectStore.createIndex('id', 'id', {
                                 unique: true
                             });
-            
+
                             console.log("对象仓库 record 初始化成功")
                         }
-                    break
+                        break
 
                     case 'balance':
                         if (!db.objectStoreNames.contains(item)) {
@@ -76,10 +76,10 @@ export default {
                                 keyPath: 'id',
                                 autoIncrement: true
                             })
-            
+
                             // 新建索引
                             objectStore.createIndex('account', 'account', {
-                                unique: false
+                                unique: true
                             })
                             objectStore.createIndex('volume', 'volume', {
                                 unique: false
@@ -88,19 +88,64 @@ export default {
                                 unique: true
                             })
 
-                            console.log("对象仓库 balance 初始化成功")
+                            objectStore.transaction.oncomplete = function (event) {
+                                let customerObjectStore = db.transaction('balance', "readwrite").objectStore('balance')
+                                const defaultBalanceData = [{
+                                    account: '支付宝',
+                                    volume: 0,
+                                }, {
+                                    account: '微信',
+                                    volume: 0,
+                                }, {
+                                    account: '现金',
+                                    volume: 0,
+                                }, {
+                                    account: '工商银行',
+                                    volume: 0,
+                                }, {
+                                    account: '建设银行',
+                                    volume: 0,
+                                }, {
+                                    account: '农业银行',
+                                    volume: 0,
+                                }, {
+                                    account: '中国银行',
+                                    volume: 0,
+                                }, {
+                                    account: '招商银行',
+                                    volume: 0,
+                                }]
+                                defaultBalanceData.forEach(function (item) {
+                                    customerObjectStore.add(item)
+                                })
+                            }
                         }
-                }
-                
-            })
-            
 
+                        console.log("对象仓库 balance 初始化成功")
+                        break
+                }
+
+            })
         }
     },
-    add(storeName, newItem){
-        let transaction = this.db.transaction(storeName, "readwrite")
-        console.log("获取事务对象", transaction)
-        const objectStore = transaction.objectStore(storeName)
-        objectStore.add(newItem)
+    add(storeName, newItem) {
+        this.db.transaction(storeName, "readwrite").objectStore(storeName).add(newItem)
+    },
+    read(storeName) {
+        let objectStore = this.db.transaction(storeName, "readonly").objectStore(storeName)
+
+        let result = []
+
+        objectStore.openCursor().onsuccess = function (event) {
+            let cursor = event.target.result
+            if (cursor) {
+                result.push(cursor.value)
+                cursor.continue()
+            }
+            else {
+                // console.log(result)
+            }
+        }
+        return result
     }
 }

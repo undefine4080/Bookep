@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import DB from '../api/db'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -13,10 +15,10 @@ export default new Vuex.Store({
 
         curRecordData: {
             amount: '0',
-            origin: null || '工资',
-            use: null || '交通',
-            account: null || '支付宝',
-            note: null,
+            origin: null,
+            use: null,
+            account: null,
+            note: ' ',
             time: null
         },
 
@@ -28,7 +30,9 @@ export default new Vuex.Store({
                 whichBox: ''
             },
             keyBoardOpenFlag: false
-        }
+        },
+
+        globalDB: null
     },
     mutations: {
         closePopBox(state) {
@@ -67,13 +71,13 @@ export default new Vuex.Store({
                     break
 
                 case 'origin':
-                    state.curRecordData.origin = commit.data
                     state.curRecordData.use = null
+                    state.curRecordData.origin = commit.data
                     break
 
                 case 'use':
-                    state.curRecordData.use = commit.data
                     state.curRecordData.origin = null
+                    state.curRecordData.use = commit.data
                     break
 
                 case 'account':
@@ -88,12 +92,59 @@ export default new Vuex.Store({
         initRecordView(state) {
             state.curRecordData = {
                 amount: '0',
-                origin: null || '工资',
-                use: null || '交通',
-                account: null || '支付宝',
-                note: null,
+                origin: null,
+                use: null,
+                account: null,
+                note: ' ',
                 time: null
             }
+        },
+        getGlobalRecordData(state) {
+            state.globalDB = DB.read('record')
+        }
+    },
+    getters: {
+        inTimeData(state) {
+            let [...record] = state.globalDB
+            return record.reverse()
+        },
+        inAmountData(state) {
+            let [...record] = state.globalDB
+
+            for (let i = 0; i < record.length - 1; i++) {
+                for (let j = i + 1; j < record.length; j++) {
+                    if (Math.abs(Number(record[i].amount)) < Math.abs(Number(record[j].amount))) {
+                        let temp = record[j]
+                        record[j] = record[i]
+                        record[i] = temp
+                    }
+                }
+            }
+            return record
+        },
+        inAccountData(state) {
+            let [...record] = state.globalDB
+
+            let accountCategories = []
+
+            for(let i=0; i < state.account.length; i++){
+                let temp = {
+                    title: state.account[i],
+                    data: []
+                }
+
+                for(let j=0; j < record.length; j++){
+                    if(record[j].account === state.account[i]){
+                        temp.data.push(record[j])
+                    }else{
+                        continue
+                    }
+                }
+                accountCategories.push(temp)
+            }
+            //console.table(accountCategories)
+
+            return accountCategories
         }
     }
 })

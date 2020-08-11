@@ -27,26 +27,21 @@ export default {
         cardContent() {
             switch (this.title) {
                 case '金额':
-                    return this.curRecordData.amount
+                    return this.curRecordData.amount || '0'
                     break
 
                 case '来源':
-                    return this.curRecordData.origin
+                    return this.curRecordData.origin || '工资'
                     break
 
                 case '用途':
-                    return this.curRecordData.use
+                    return this.curRecordData.use || '购物'
                     break
 
                 case '账户':
-                    return this.curRecordData.account
+                    return this.curRecordData.account || '支付宝'
                     break
             }
-        }
-    },
-    data() {
-        return{
-          amount: 0
         }
     }
 }
