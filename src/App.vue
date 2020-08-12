@@ -12,6 +12,7 @@ import DB from '../src/api/db.js'
 export default {
     name: 'App',
     mounted() {
+        this.$store.commit('initBaseData')
         DB.openDB()
     }
 }

@@ -107,13 +107,9 @@ export default {
                 amount: realAmount,
                 note: this.curRecordData.note
             }
-
             DB.add('record', newRecord)
-
             this.$store.commit('initRecordView')
-
             this.$router.push('/main')
-
             console.log('添加数据成功')
         }
     }

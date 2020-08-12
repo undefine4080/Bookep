@@ -7,11 +7,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        way: {
-            origin: ['工资', '兼职', '投资理财', '红包', '奖金', '其他'],
-            use: ['吃饭', '住宿', '交通', '购物', '送礼', '旅游', '其他'],
-        },
-        account: ['支付宝', '微信', '现金', '工商银行', '建设银行', '农业银行', '中国银行', '招商银行'],
+        way: null,
+        account: null,
 
         curRecordData: {
             amount: '0',
@@ -101,6 +98,70 @@ export default new Vuex.Store({
         },
         getGlobalRecordData(state) {
             state.globalDB = DB.read('record')
+        },
+        initBaseData(state) {
+            const wayData = {
+                origin: ['工资', '兼职', '投资理财', '红包', '奖金', '其他'],
+                use: ['吃饭', '住宿', '交通', '购物', '送礼', '旅游', '其他'],
+            }
+
+            const balanceData = [{
+                account: '支付宝',
+                volume: 0,
+            }, {
+                account: '微信',
+                volume: 0,
+            }, {
+                account: '现金',
+                volume: 0,
+            }, {
+                account: '工商银行',
+                volume: 0,
+            }, {
+                account: '建设银行',
+                volume: 0,
+            }, {
+                account: '农业银行',
+                volume: 0,
+            }, {
+                account: '中国银行',
+                volume: 0,
+            }, {
+                account: '招商银行',
+                volume: 0,
+            }]
+
+            let temp = []
+            balanceData.forEach(item => {
+                temp.push(item.account)
+            })
+
+            if (!localStorage.getItem('way')) {
+                localStorage.setItem('way', JSON.stringify(wayData))
+                state.way = wayData
+            } else if (!localStorage.getItem('balance')) {
+                localStorage.setItem('balance', JSON.stringify(balanceData))
+                state.account = temp
+            } else {
+                console.log("从 localstorage 读取基础数据")
+
+                state.way = JSON.parse(localStorage.getItem('way'))
+
+                let temp = []
+                JSON.parse(localStorage.getItem('balance')).forEach(item => {
+                    temp.push(item.account)
+                })
+                state.account = temp
+            }
+        },
+        updateBaseData(state, option) {
+            if (option.dbName === 'way') {
+                localStorage.setItem('way', option.newData)
+            } else if (option.dbName === 'balance') {
+                localStorage.setItem('balance', option.newData)
+            } else {
+                console.log("基础数据更新错误")
+            }
         }
     },
     getters: {
@@ -127,23 +188,21 @@ export default new Vuex.Store({
 
             let accountCategories = []
 
-            for(let i=0; i < state.account.length; i++){
+            for (let i = 0; i < state.account.length; i++) {
                 let temp = {
                     title: state.account[i],
                     data: []
                 }
 
-                for(let j=0; j < record.length; j++){
-                    if(record[j].account === state.account[i]){
+                for (let j = 0; j < record.length; j++) {
+                    if (record[j].account === state.account[i]) {
                         temp.data.push(record[j])
-                    }else{
+                    } else {
                         continue
                     }
                 }
                 accountCategories.push(temp)
             }
-            //console.table(accountCategories)
-
             return accountCategories
         }
     }
