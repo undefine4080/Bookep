@@ -139,20 +139,22 @@ export default new Vuex.Store({
             if (!localStorage.getItem('way')) {
                 localStorage.setItem('way', JSON.stringify(wayData))
                 state.way = wayData
-            } else if (!localStorage.getItem('balance')) {
+            }
+
+            if (!localStorage.getItem('balance')) {
                 localStorage.setItem('balance', JSON.stringify(balanceData))
                 state.account = temp
-            } else {
-                console.log("从 localstorage 读取基础数据")
-
-                state.way = JSON.parse(localStorage.getItem('way'))
-
-                let temp = []
-                JSON.parse(localStorage.getItem('balance')).forEach(item => {
-                    temp.push(item.account)
-                })
-                state.account = temp
             }
+
+            console.log("从 localstorage 读取基础数据")
+
+            state.way = JSON.parse(localStorage.getItem('way'))
+
+            let atemp = []
+            JSON.parse(localStorage.getItem('balance')).forEach(item => {
+                atemp.push(item.account)
+            })
+            state.account = atemp
         },
         updateBaseData(state, option) {
             if (option.dbName === 'way') {
@@ -204,6 +206,31 @@ export default new Vuex.Store({
                 accountCategories.push(temp)
             }
             return accountCategories
+        },
+        getBalanceData(state, getters) {
+            let [...raw] = getters.inAccountData
+
+            let data = []
+
+            for (let i = 0; i < raw.length; i++) {
+                let temp = {
+                    account: raw[i].title,
+                    volume: 0
+                }
+                if (raw[i].data.length > 1) {
+                    let total = raw[i].data.reduce((pre, next) => {
+                        return parseFloat(pre.amount) + parseFloat(next.amount)
+                    })
+                    temp.volume = 0 + total
+                } else if (raw[i].data.length == 1) {
+                    temp.volume = 0 + raw[i].data[0].amount
+                } else {
+                    temp.volume = 0
+                }
+                data.push(temp)
+            }
+            localStorage.setItem('balance', JSON.stringify(data))
+            return data
         }
     }
 })

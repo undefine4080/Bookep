@@ -2,10 +2,10 @@
   <div class="balance page font base-color">
     <option-bar :data="optBarData" class="down-shadow theme-color"></option-bar>
     <div class="balance-cards view-content">
-      <div class="balance-card outer-shadow radiu theme-color">
-        <div class="balance-card-item wh-row-center">支付宝</div>
-        <div class="balance-card-item wh-row-center">36%</div>
-        <div class="balance-card-item wh-row-center">5869</div>
+      <div class="balance-card outer-shadow radiu theme-color" v-for="(item, index) in getBalanceData" :key="index">
+        <div class="balance-card-item wh-row-center">{{item.account}}</div>
+        <!-- <div class="balance-card-item wh-row-center">{{}}</div> -->
+        <div class="balance-card-item wh-row-center">{{item.volume}}</div>
       </div>
     </div>
   </div>
@@ -13,6 +13,7 @@
 
 <script>
 import OptionBar from '../../common/OptionBar.vue'
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'Balance',
@@ -28,8 +29,15 @@ export default {
         },
         center: '账户余额',
         right: {}
-      }
+      },
+      trick:null
     }
+  },
+  computed: {
+    ...mapGetters(['getBalanceData'])
+  },
+  beforeMount(){
+    this.$store.commit('getGlobalRecordData')
   }
 }
 </script>
