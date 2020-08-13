@@ -35,16 +35,28 @@ export default {
         }
     },
     computed: {
-        ...mapState(['account']),
+        ...mapState(['account','way']),
         menuData(){
             return {
                 settingAccount: {
                     title: '账户设置',
+                    type: 'AD',
                     menuItem: this.account
                 },
                 volumeAccount: {
                     title: '账户额度设置',
+                    type: 'M',
                     menuItem: this.account
+                },
+                useCategories: {
+                    title: '支出类别设置',
+                    type: 'AD',
+                    menuItem: this.way.use
+                },
+                originCategories:{
+                    title: '支出类别设置',
+                    type: 'AD',
+                    menuItem: this.way.origin
                 }
             }
         }

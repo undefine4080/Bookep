@@ -1,18 +1,38 @@
 <template>
-<div class="menu radiu theme-color font outer-shadow">
-    <div class="menu-title h-row-center" @click="openMenuItems" :class="{'menu-title-open':menuItemsActive}">{{data.title}}</div>
+  <div class="menu radiu theme-color font outer-shadow">
+    <div
+      class="menu-title h-row-center"
+      @click="openMenuItems"
+      :class="{'menu-title-open':menuItemsActive}"
+    >{{data.title}}</div>
     <transition name="fade">
-        <div class="menu-items theme-color" v-if="isMenuItemsOpen">
-            <div class="menu-item mark three-col point" v-for="(menuItem, index) in data.menuItem" :key="index">
-                <div>{{menuItem}}</div>
-                <div>550</div>
-                <div class="wh-row-center">
-                    <icon-button :data="{icon: 'edit'}" class="menu-item-btn"></icon-button>
-                </div>
-            </div>
+      <div class="menu-items theme-color" v-if="isMenuItemsOpen">
+        <div
+          class="menu-item mark three-col point"
+          v-for="(menuItem, index) in data.menuItem"
+          :key="index"
+        >
+          <div>{{menuItem}}</div>
+
+          <div v-if="data.type === 'M'">550</div>
+          <div v-else></div>
+
+          <div class="wh-row-center" v-if="data.type === 'M'">
+            <icon-button :data="{icon: 'edit'}" class="menu-item-btn"></icon-button>
+          </div>
+          <div class="wh-row-center" v-else>
+            <icon-button :data="{icon: 'delete'}" class="menu-item-btn"></icon-button>
+          </div>
         </div>
+
+        <div class="menu-item mark point theme-color wh-row-center" v-if="data.type === 'AD'">
+          <div class="menu-item-btn w-row-center">
+            <icon-button :data="{icon: 'add'}"></icon-button>
+          </div>
+        </div>
+      </div>
     </transition>
-</div>
+  </div>
 </template>
 
 <script>
@@ -45,43 +65,39 @@ export default {
 
 <style lang="scss">
 .menu {
-    width: auto;
-    margin: 5%;
+  width: auto;
+  margin: 5%;
 }
 
 .menu-title {
-    width: 100%;
-    height: 40px;
-    text-indent: 20px;
+  width: 100%;
+  height: 40px;
+  text-indent: 20px;
 }
 
 .menu-title-open {
-    border-radius: 15px 15px 0 0;
+  border-radius: 15px 15px 0 0;
 }
 
 .menu-items {
-    width: auto;
-    height: auto;
-    box-sizing: border-box;
-    border-radius: 0 0 15px 15px;
-    font-size: 0.8rem;
+  width: auto;
+  height: auto;
+  box-sizing: border-box;
+  border-radius: 0 0 15px 15px;
+  font-size: 0.8rem;
 }
 
 .menu-item {
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid rgb(236, 236, 236);
+  &:last-child {
+    border-radius: 0 0 15px 15px;
+  }
+  div:last-child {
     width: 100%;
-    height: 40px;
-    border-bottom: 1px solid rgb(236, 236, 236);
-    &:last-child {
-        border-radius: 0 0 15px 15px;
-    }
-    div:last-child{
-        width: 100%;
-        height: 100%;
-    }
-}
-
-.menu-item-btn {
-    width: 100% !important;
-    height: 60% !important;
+    height: 85%;
+    box-sizing: border-box;
+  }
 }
 </style>
