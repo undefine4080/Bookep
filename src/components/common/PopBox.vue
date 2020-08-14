@@ -5,13 +5,9 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
 
 export default {
   name: 'PopBox',
-  computed: {
-    ...mapState(['recordPageData'])
-  },
   methods: {
     close(){
       this.$emit('handle')

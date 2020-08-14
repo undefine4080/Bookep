@@ -23,7 +23,7 @@ export default {
                     data: item
                 })
 
-            this.$store.commit('closePopBox')
+            this.$store.commit('closeRecordPopBox')
         }
     },
     computed: {

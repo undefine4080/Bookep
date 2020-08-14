@@ -29,16 +29,23 @@ export default new Vuex.Store({
             keyBoardOpenFlag: false
         },
 
+        settingPageData: {
+            popBoxOpenFlag: false,
+            confirmBoxOpenFlag: false,
+            inputBoxOpenFlag: false,
+            dataForPopBox: null,
+        },
+
         globalDB: null
     },
     mutations: {
-        closePopBox(state) {
+        closeRecordPopBox(state) {
             let i = state.recordPageData
             i.popBoxOpenFlag = false
             i.selectBoxFlag.openFlag = false
             i.keyBoardOpenFlag = false
         },
-        openPopBox(state, flag) {
+        openRecordPopBox(state, flag) {
             let i = state.recordPageData
             let l = i.selectBoxFlag
 
@@ -96,9 +103,37 @@ export default new Vuex.Store({
                 time: null
             }
         },
+
+        closeSettingPopBox(state) {
+            let i = state.settingPageData
+            i.popBoxOpenFlag = false
+            i.confirmBoxOpenFlag = false
+            i.inputBoxOpenFlag = false
+        },
+        openSettingPopBox(state, flag) {
+            let i = state.settingPageData
+            i.popBoxOpenFlag = true
+
+            if (flag.type === 'input') {
+                i.confirmBoxOpenFlag = false
+                i.inputBoxOpenFlag = true
+                i.dataForPopBox = {
+                    type: flag.flag
+                }
+            }else if(flag.type === 'confirm'){
+                i.inputBoxOpenFlag = false
+                i.confirmBoxOpenFlag = true
+                i.dataForPopBox = {
+                    target: flag.target,
+                    type: flag.flag
+                }
+            }
+        },
+
         getGlobalRecordData(state) {
             state.globalDB = DB.read('record')
         },
+
         initBaseData(state) {
             const wayData = {
                 origin: ['工资', '兼职', '投资理财', '红包', '奖金', '其他'],

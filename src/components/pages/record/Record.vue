@@ -83,10 +83,10 @@ export default {
     },
     methods: {
         openPopBox(flag) {
-            this.$store.commit('openPopBox', flag)
+            this.$store.commit('openRecordPopBox', flag)
         },
         closePopBox() {
-            this.$store.commit('closePopBox')
+            this.$store.commit('closeRecordPopBox')
         },
         addRecord() {
             this.$refs.noteComp.commitNote()
