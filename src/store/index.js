@@ -9,6 +9,7 @@ export default new Vuex.Store({
     state: {
         way: null,
         account: null,
+        balance: null,
 
         curRecordData: {
             amount: '0',
@@ -118,6 +119,7 @@ export default new Vuex.Store({
                 i.confirmBoxOpenFlag = false
                 i.inputBoxOpenFlag = true
                 i.dataForPopBox = {
+                    target: flag.target,
                     type: flag.flag
                 }
             }else if(flag.type === 'confirm'){
@@ -174,31 +176,26 @@ export default new Vuex.Store({
             if (!localStorage.getItem('way')) {
                 localStorage.setItem('way', JSON.stringify(wayData))
                 state.way = wayData
+            }else{
+                state.way = JSON.parse(localStorage.getItem('way'))
             }
 
             if (!localStorage.getItem('balance')) {
                 localStorage.setItem('balance', JSON.stringify(balanceData))
                 state.account = temp
+            }else{
+                state.balance = JSON.parse(localStorage.getItem('balance'))
+                function caculateAccount(){
+                    let temp = []
+                    state.balance.forEach(item => {
+                        temp.push(item.account)
+                    })
+                    return temp
+                }
+                state.account = caculateAccount()
             }
-
             console.log("从 localstorage 读取基础数据")
-
-            state.way = JSON.parse(localStorage.getItem('way'))
-
-            let atemp = []
-            JSON.parse(localStorage.getItem('balance')).forEach(item => {
-                atemp.push(item.account)
-            })
-            state.account = atemp
-        },
-        updateBaseData(state, option) {
-            if (option.dbName === 'way') {
-                localStorage.setItem('way', option.newData)
-            } else if (option.dbName === 'balance') {
-                localStorage.setItem('balance', option.newData)
-            } else {
-                console.log("基础数据更新错误")
-            }
+            console.log(state.way,state.account,state.balance)
         }
     },
     getters: {

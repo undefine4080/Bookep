@@ -4,13 +4,13 @@
     <transition name="fade">
         <div class="menu-items theme-color" v-if="isMenuItemsOpen">
             <div class="menu-item mark three-col point" v-for="(menuItem, index) in data.menuItem" :key="index">
-                <div>{{menuItem}}</div>
+                <div>{{menuItem.account || menuItem}}</div>
 
-                <div v-if="data.type === 'M'">550</div>
+                <div v-if="data.type === 'M'">{{menuItem.volume}}</div>
                 <div v-else></div>
 
                 <div class="wh-row-center" v-if="data.type === 'M'">
-                    <icon-button :data="{icon: 'edit'}" class="menu-item-btn" @handle="editItem"></icon-button>
+                    <icon-button :data="{icon: 'edit'}" class="menu-item-btn" @handle="editItem(index)"></icon-button>
                 </div>
                 <div class="wh-row-center" v-else>
                     <icon-button :data="{icon: 'delete'}" class="menu-item-btn" @handle="deleteItem(menuItem)"></icon-button>
@@ -19,7 +19,7 @@
 
             <div class="menu-item mark point theme-color wh-row-center" v-if="data.type === 'AD'">
                 <div class="menu-item-btn w-row-center">
-                    <icon-button :data="{icon: 'add'}" @handle="addItem"></icon-button>
+                    <icon-button :data="{icon: 'add'}" @handle="addItem(data.flag)"></icon-button>
                 </div>
             </div>
         </div>
@@ -50,54 +50,36 @@ export default {
         }
     },
     computed: {
-        ...mapMutations(['closeSettingPopBox', 'openSettingPopBox'])
+        ...mapMutations(['closeSettingPopBox', 'openSettingPopBox']),
+        balanceData() {
+            return JSON.parse(localStorage.getItem('balance'))
+        }
     },
     methods: {
         openMenuItems() {
             this.menuItemsActive = !this.menuItemsActive
             this.isMenuItemsOpen = !this.isMenuItemsOpen
         },
-        addItem() {
+        addItem(flag) {
             console.log("添加项目")
             this.$store.commit('openSettingPopBox', 'input')
         },
-        editItem() {
+        editItem(item) {
             console.log("编辑项目")
-            this.$store.commit('openSettingPopBox', 'input')
+            this.$store.commit('openSettingPopBox', {
+                type: 'input',
+                target: item,
+                flag: this.data.flag
+            })
         },
         deleteItem(item) {
             console.log("删除项目")
-            switch (this.data.flag) {
-                case 'u':
-                    this.$store.commit('openSettingPopBox', {
-                        type: 'confirm',
-                        target: item,
-                        flag: 'u'
-                    })
-                    break
-                case 'o':
-                    this.$store.commit('openSettingPopBox', {
-                        type: 'confirm',
-                        target: item,
-                        flag: 'o'
-                    })
-                    break
-                case 's':
-                    this.$store.commit('openSettingPopBox', {
-                        type: 'confirm',
-                        target: item,
-                        flag: 's'
-                    })
-                    break
-                case 'v':
-                    this.$store.commit('openSettingPopBox', {
-                        type: 'confirm',
-                        target: item,
-                        flag: 'v'
-                    })
-                    break
-            }
-        },
+            this.$store.commit('openSettingPopBox', {
+                type: 'confirm',
+                target: item,
+                flag: this.data.flag
+            })
+        }
     }
 }
 </script>

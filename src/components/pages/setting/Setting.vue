@@ -11,7 +11,7 @@
 
     <pop-box v-if="settingPageData.popBoxOpenFlag" class="wh-row-center" @handle="closePopBox">
         <confirm-box v-if="settingPageData.confirmBoxOpenFlag" :data="settingPageData.dataForPopBox" @handle="confirmToDelete"></confirm-box>
-        <input-box v-if="settingPageData.inputBoxOpenFlag"></input-box>
+        <input-box v-if="settingPageData.inputBoxOpenFlag" :data="settingPageData.dataForPopBox" @handle="confirmToModify"></input-box>
     </pop-box>
 </div>
 </template>
@@ -49,7 +49,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['account', 'way', 'settingPageData']),
+        ...mapState(['account', 'way', 'settingPageData','balance']),
         menuData() {
             return {
                 settingAccount: {
@@ -61,7 +61,7 @@ export default {
                 volumeAccount: {
                     title: '账户额度设置',
                     type: 'M',
-                    menuItem: this.account,
+                    menuItem: this.balance,
                     flag: 'v'
                 },
                 useCategories: {
@@ -84,21 +84,8 @@ export default {
     },
     methods: {
         closePopBox() {
+            this.$store.commit('initBaseData')
             this.$store.commit('closeSettingPopBox')
-        },
-        confirmToDelete(data) {
-            console.log(data)
-            // 判断从哪个 数据库删除
-            if (data.type === 'u') {
-                this.deleteAction('use', data)
-                return
-            } else if (data.type === 'o') {
-                this.deleteAction('origin', data)
-                return
-            } else if (data.type === 's') {
-                this.deleteAction('balance', data)
-                return
-            }
         },
         deleteAction(dataName, data) {
             let temp
@@ -125,10 +112,29 @@ export default {
                     }
                 }
                 temp.splice(index, 1)
-                console.log(temp)
-            }
 
-             this.$store.commit('initBaseData')
+                localStorage.setItem(dataName, JSON.stringify(temp))
+                console.log(temp, "删除账户")
+            }
+        },
+        confirmToDelete(data) {
+            console.log(data)
+            // 判断从哪个 数据库删除
+            if (data.type === 'u') {
+                this.deleteAction('use', data)
+                return
+            } else if (data.type === 'o') {
+                this.deleteAction('origin', data)
+                return
+            } else if (data.type === 's') {
+                this.deleteAction('balance', data)
+                return
+            }
+        },
+        confirmToModify(inputData) {
+            let temp = JSON.parse(localStorage.getItem('balance'))
+            temp[inputData.data.target].volume = parseFloat(inputData.value)
+            localStorage.setItem('balance', JSON.stringify(temp))
         }
     }
 }
