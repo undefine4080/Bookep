@@ -120,7 +120,7 @@ export default new Vuex.Store({
                 i.inputBoxOpenFlag = true
                 i.dataForPopBox = {
                     target: flag.target,
-                    type: flag.flag
+                    flag: flag.flag
                 }
             }else if(flag.type === 'confirm'){
                 i.inputBoxOpenFlag = false

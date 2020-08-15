@@ -2,8 +2,8 @@
 <div class="confirm-box theme-color radiu font" @click.stop="silence">
     <div class="confirm-title down-shadow wh-row-center">提示</div>
     <div class="confirm-text wh-row-center">
-        删除
-        <span style="color: rgb(224, 85, 85)">{{data.target}}</span>？
+        <slot> 删除
+        <span style="color: rgb(224, 85, 85)">{{data.target}}</span>？</slot>
     </div>
     <div class="confirm-btns wh-row-center up-shadow">
         <div class="confirm-btn wh-row-center point theme-color" @click="closeConfirm">取消</div>

@@ -49,7 +49,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['account', 'way', 'settingPageData','balance']),
+        ...mapState(['account', 'way', 'settingPageData', 'balance']),
         menuData() {
             return {
                 settingAccount: {
@@ -132,11 +132,37 @@ export default {
             }
         },
         confirmToModify(inputData) {
-            let temp = JSON.parse(localStorage.getItem('balance'))
-            temp[inputData.data.target].volume = parseFloat(inputData.value)
-            localStorage.setItem('balance', JSON.stringify(temp))
+            let flag = inputData.data.flag
+            if (flag == 'v') {
+                let temp = JSON.parse(localStorage.getItem('balance'))
+                temp[inputData.data.target].volume = parseFloat(inputData.value)
+                localStorage.setItem('balance', JSON.stringify(temp))
+            } else if (flag == 's') {
+                let temp = JSON.parse(localStorage.getItem('balance'))
+                let newItem = {
+                    account: inputData.value,
+                    volume: 0
+                }
+                temp.push(newItem)
+                localStorage.setItem('balance', JSON.stringify(temp))
+            } else if(flag == 'o'){
+                let temp = JSON.parse(localStorage.getItem('way'))
+                temp.origin.push(inputData.value)
+                localStorage.setItem('way', JSON.stringify(temp))
+            }else if(flag == 'u'){
+                let temp = JSON.parse(localStorage.getItem('way'))
+                temp.use.push(inputData.value)
+                localStorage.setItem('way', JSON.stringify(temp))
+            }else{
+                return
+            }
         }
-    }
+    },
+    // modifyAction(dbName, data){
+    //     let temp = JSON.parse(localStorage.getItem('balance'))
+    //     temp[inputData.data.target].volume = parseFloat(inputData.value)
+    //     localStorage.setItem('balance', JSON.stringify(temp))
+    // }
 }
 </script>
 

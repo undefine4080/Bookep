@@ -1,8 +1,12 @@
 <template>
 <div class="input-box radiu theme-color outer-shadow font" @click="silence">
-    <div class="input-title down-shadow theme-color wh-row-center">请输入新类别的名称</div>
+    <div class="input-title down-shadow theme-color wh-row-center">
+        <span v-if="data.flag == 'v'">输入您定义的额度</span>
+        <span v-else>输入新{{data.target}}的名称</span>
+    </div>
+
     <div class="input-content wh-row-center">
-        <input type="number" class="setting-input inner-shadow" v-model="inputText" />
+        <input :type="InputType" class="setting-input inner-shadow" v-model="inputText" />
     </div>
     <div class="input-btns wh-row-center up-shadow">
         <div class="input-btn wh-row-center point theme-color" @click="closeinput">取消</div>
@@ -27,6 +31,8 @@ export default {
         closeinput() {
             this.$store.commit('initBaseData')
             this.$store.commit('closeSettingPopBox')
+
+            // console.log(this.data)
         },
         confirm(data) {
             this.$emit('handle', {
@@ -34,6 +40,15 @@ export default {
                 value: this.inputText
             })
             this.closeinput()
+        }
+    },
+    computed:{
+        InputType(){
+            if(this.data.flag == 'v'){
+                return 'number'
+            }else{
+                return 'text'
+            }
         }
     }
 }

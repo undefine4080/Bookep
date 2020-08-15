@@ -19,7 +19,7 @@
 
             <div class="menu-item mark point theme-color wh-row-center" v-if="data.type === 'AD'">
                 <div class="menu-item-btn w-row-center">
-                    <icon-button :data="{icon: 'add'}" @handle="addItem(data.flag)"></icon-button>
+                    <icon-button :data="{icon: 'add'}" @handle="addItem()"></icon-button>
                 </div>
             </div>
         </div>
@@ -60,9 +60,19 @@ export default {
             this.menuItemsActive = !this.menuItemsActive
             this.isMenuItemsOpen = !this.isMenuItemsOpen
         },
-        addItem(flag) {
+        addItem() {
             console.log("添加项目")
-            this.$store.commit('openSettingPopBox', 'input')
+            // 去掉 “设置” 两个字
+            let [...title] = this.data.title
+            title.pop()
+            title.pop()
+            let temp = title.join('').toString()
+
+             this.$store.commit('openSettingPopBox', {
+                type: 'input',
+                target: temp,
+                flag: this.data.flag
+            })
         },
         editItem(item) {
             console.log("编辑项目")
