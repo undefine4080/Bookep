@@ -1,11 +1,12 @@
 <template>
-  <div class="option-bar w-row-between h-row-center theme-color">
-    <icon-button :data="data.left"></icon-button>
+  <!-- <div class="option-bar w-row-between h-row-center theme-color"> -->
+  <div class="option-bar three-col theme-color">
+    <icon-button :data="data.left" :class="whenTopStyle.left"></icon-button>
 
     <icon-button v-if="isCenterIcon" :data="data.center"></icon-button>
     <div v-else class="page-title font">{{data.center}}</div>
 
-    <icon-button :data="data.right" @handle="messageTo"></icon-button>
+    <icon-button v-show="isSetAmount" :data="data.right" :class="whenTopStyle.right" @handle="messageTo"></icon-button>
   </div>
 </template>
 
@@ -20,6 +21,10 @@ export default {
   props: {
     data: {
       type: Object
+    },
+    isSetAmount: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {
@@ -30,6 +35,19 @@ export default {
         return false
       }else{
         return false
+      }
+    },
+    whenTopStyle(){
+      if(this.isCenterIcon){
+        return {
+          left: '',
+          right: ''
+        }
+      }else{
+        return {
+          left: 'grid-item-left',
+          right: 'grid-item-right'
+        }
       }
     }
   },

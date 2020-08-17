@@ -69,16 +69,13 @@ export default {
     read(storeName) {
         let objectStore = this.db.transaction(storeName, "readonly").objectStore(storeName)
 
-        let result = []
+        let result = new Array(0)
 
         objectStore.openCursor().onsuccess = function (event) {
             let cursor = event.target.result
             if (cursor) {
                 result.push(cursor.value)
                 cursor.continue()
-            }
-            else {
-                // console.log(result)
             }
         }
         return result

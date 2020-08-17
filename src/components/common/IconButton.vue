@@ -20,8 +20,8 @@ export default {
 
 <style lang="scss">
 .icon-button {
-    width: 8%;
-    height: 80%;
+    width: 40%;
+    height: 60%;
     display: block;
     box-sizing: border-box;
     margin: auto 3%;

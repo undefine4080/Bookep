@@ -1,7 +1,7 @@
 const lineMapData = {
   xAxis: {
     type: 'category',
-    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
   },
   yAxis: {
     type: 'value'
@@ -14,8 +14,8 @@ const lineMapData = {
 
 const pieMapData = {
   title: {
-    text: '某站点用户访问来源',
-    subtext: '纯属虚构',
+    // text: '某站点用户访问来源',
+    // subtext: '纯属虚构',
     left: 'center'
   },
   tooltip: {
@@ -33,25 +33,25 @@ const pieMapData = {
     radius: '55%',
     center: ['50%', '60%'],
     data: [{
-        value: 335,
-        name: '直接访问'
-      },
-      {
-        value: 310,
-        name: '邮件营销'
-      },
-      {
-        value: 234,
-        name: '联盟广告'
-      },
-      {
-        value: 135,
-        name: '视频广告'
-      },
-      {
-        value: 1548,
-        name: '搜索引擎'
-      }
+      value: 335,
+      name: '直接访问'
+    },
+    {
+      value: 310,
+      name: '邮件营销'
+    },
+    {
+      value: 234,
+      name: '联盟广告'
+    },
+    {
+      value: 135,
+      name: '视频广告'
+    },
+    {
+      value: 1548,
+      name: '搜索引擎'
+    }
     ],
     emphasis: {
       itemStyle: {
@@ -94,26 +94,26 @@ const blockMapData = {
     radius: '55%',
     center: ['50%', '50%'],
     data: [{
-        value: 335,
-        name: '直接访问'
-      },
-      {
-        value: 310,
-        name: '邮件营销'
-      },
-      {
-        value: 274,
-        name: '联盟广告'
-      },
-      {
-        value: 235,
-        name: '视频广告'
-      },
-      {
-        value: 400,
-        name: '搜索引擎'
-      }
-    ].sort(function(a, b) {
+      value: 335,
+      name: '直接访问'
+    },
+    {
+      value: 310,
+      name: '邮件营销'
+    },
+    {
+      value: 274,
+      name: '联盟广告'
+    },
+    {
+      value: 235,
+      name: '视频广告'
+    },
+    {
+      value: 400,
+      name: '搜索引擎'
+    }
+    ].sort(function (a, b) {
       return a.value - b.value;
     }),
     roseType: 'radius',
@@ -136,10 +136,10 @@ const blockMapData = {
 
     animationType: 'scale',
     animationEasing: 'elasticOut',
-    animationDelay: function(idx) {
+    animationDelay: function (idx) {
       return Math.random() * 200;
     }
   }]
 }
 
-export {lineMapData, pieMapData, blockMapData}
+export { lineMapData, pieMapData, blockMapData}

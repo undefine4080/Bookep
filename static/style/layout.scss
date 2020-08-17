@@ -66,6 +66,14 @@
     }
 }
 
+.grid-item-left{
+    justify-self: start;
+}
+
+.grid-item-right{
+    justify-self: end;
+}
+
 @mixin row-layout {
     display: flex;
     flex-direction: row;

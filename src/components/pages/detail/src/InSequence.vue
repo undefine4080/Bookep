@@ -23,9 +23,6 @@ export default {
             }
         },
         ...mapGetters(['inTimeData', 'inAmountData']),
-    },
-    created(){
-        console.log('载入全局数据')
     }
 }
 </script>

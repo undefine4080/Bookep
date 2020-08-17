@@ -6,7 +6,8 @@ import router from './router'
 import store from './store'
 
 import '../static/style/layout.scss'
-import './assets/theme/white/white.scss'
+import './assets/theme/white/white.css'
+// import './assets/theme/black/black.css'
 import '../static/style/animate.scss'
 
 import echarts from 'echarts'

@@ -104,7 +104,27 @@ export default new Vuex.Store({
                 time: null
             }
         },
-
+        resetRecordView(state, flag) {
+            if(flag == true){
+                state.curRecordData = {
+                    amount: '0',
+                    origin: null,
+                    use: state.way.use[0],
+                    account: state.account[0],
+                    note: ' ',
+                    time: null
+                }
+            }else{
+                state.curRecordData = {
+                    amount: '0',
+                    origin: state.way.origin[0],
+                    use: null,
+                    account: state.account[0],
+                    note: ' ',
+                    time: null
+                }
+            }
+        },
         closeSettingPopBox(state) {
             let i = state.settingPageData
             i.popBoxOpenFlag = false
@@ -131,11 +151,10 @@ export default new Vuex.Store({
                 }
             }
         },
-
         getGlobalRecordData(state) {
             state.globalDB = DB.read('record')
+            console.log('读取全局数据')
         },
-
         initBaseData(state) {
             const wayData = {
                 origin: ['工资', '兼职', '投资理财', '红包', '奖金', '其他'],
@@ -195,7 +214,7 @@ export default new Vuex.Store({
                 state.account = caculateAccount()
             }
             console.log("从 localstorage 读取基础数据")
-            console.log(state.way,state.account,state.balance)
+            // console.log(state.way,state.account,state.balance)
         }
     },
     getters: {

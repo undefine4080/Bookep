@@ -157,12 +157,7 @@ export default {
                 return
             }
         }
-    },
-    // modifyAction(dbName, data){
-    //     let temp = JSON.parse(localStorage.getItem('balance'))
-    //     temp[inputData.data.target].volume = parseFloat(inputData.value)
-    //     localStorage.setItem('balance', JSON.stringify(temp))
-    // }
+    }
 }
 </script>
 

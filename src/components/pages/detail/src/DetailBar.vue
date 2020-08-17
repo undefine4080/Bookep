@@ -27,10 +27,10 @@ export default {
     },
     computed: {
       time(){
-        return this.data.time.slice(10, 20)
+        return this.data.time.toLocaleString().slice(10, 20)
       },
       date(){
-        return this.data.time.slice(0, 9)
+        return this.data.time.toLocaleString().slice(0, 9)
       }
     }
 }

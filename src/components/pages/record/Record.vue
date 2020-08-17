@@ -1,24 +1,33 @@
 <template>
-<div class="record page base-color font">
-    <option-bar :data="optBarData" class="down-shadow theme-color" @confirm="addRecord"></option-bar>
+  <div class="record page base-color font">
+    <option-bar
+      :data="optBarData"
+      :isSetAmount="setAmount"
+      class="down-shadow theme-color"
+      @confirm="addRecord"
+    ></option-bar>
 
     <div class="view-content wh-col-around">
-        <card :title="cardData.amountCard" @handle="openPopBox('keyboard')"></card>
+      <card :title="cardData.amountCard" @handle="openPopBox('keyboard')"></card>
 
-        <card v-if="whichCard" :title="cardData.useCard" @handle="openPopBox('usebox')"></card>
+      <card v-if="whichCard" :title="cardData.useCard" @handle="openPopBox('usebox')"></card>
 
-        <card v-else :title="cardData.originCard" @handle="openPopBox('originbox')"></card>
+      <card v-else :title="cardData.originCard" @handle="openPopBox('originbox')"></card>
 
-        <card :title="cardData.accountCard" @handle="openPopBox('accountbox')"></card>
+      <card :title="cardData.accountCard" @handle="openPopBox('accountbox')"></card>
 
-        <note ref="noteComp"></note>
+      <note ref="noteComp"></note>
     </div>
 
-    <pop-box v-if="recordPageData.popBoxOpenFlag" @handle="closePopBox" :class="{'wh-row-center': recordPageData.selectBoxFlag.openFlag, 'h-row-bottom': recordPageData.keyBoardOpenFlag}">
-        <select-box v-if="recordPageData.selectBoxFlag.openFlag" :data="recordPageData.selectBoxFlag"></select-box>
-        <key-board v-if="recordPageData.keyBoardOpenFlag"></key-board>
+    <pop-box
+      v-if="recordPageData.popBoxOpenFlag"
+      @handle="closePopBox"
+      :class="{'wh-row-center': recordPageData.selectBoxFlag.openFlag, 'h-row-bottom': recordPageData.keyBoardOpenFlag}"
+    >
+      <select-box v-if="recordPageData.selectBoxFlag.openFlag" :data="recordPageData.selectBoxFlag"></select-box>
+      <key-board v-if="recordPageData.keyBoardOpenFlag"></key-board>
     </pop-box>
-</div>
+  </div>
 </template>
 
 <script>
@@ -68,7 +77,8 @@ export default {
                 originCard: '来源',
                 useCard: '用途',
                 accountCard: '账户'
-            }
+            },
+            setAmount: false
         }
     },
     computed: {
@@ -84,6 +94,11 @@ export default {
     methods: {
         openPopBox(flag) {
             this.$store.commit('openRecordPopBox', flag)
+            if (flag == 'keyboard') {
+                this.setAmount = true
+            }else{
+                return
+            }
         },
         closePopBox() {
             this.$store.commit('closeRecordPopBox')
@@ -101,16 +116,28 @@ export default {
 
             const newRecord = {
                 account: this.curRecordData.account,
-                time: new Date().toLocaleString(),
+                time: new Date(),
                 use: this.curRecordData.use,
                 origin: this.curRecordData.origin,
                 amount: realAmount,
                 note: this.curRecordData.note
             }
+
             DB.add('record', newRecord)
-            this.$store.commit('initRecordView')
+
+            this.saveAndBack()
+        },
+        saveAndBack() {
+            this.$store.commit('resetRecordView')
             this.$router.push('/main')
             console.log('添加数据成功')
+        }
+    },
+    beforeMount() {
+        if (this.optBarData.center == '支出') {
+            this.$store.commit('resetRecordView', true)
+        } else {
+            this.$store.commit('resetRecordView', false)
         }
     }
 }
