@@ -1,6 +1,6 @@
 <template>
   <!-- <div class="option-bar w-row-between h-row-center theme-color"> -->
-  <div class="option-bar three-col theme-color">
+  <div class="option-bar three-col base-color">
     <icon-button :data="data.left" :class="whenTopStyle.left"></icon-button>
 
     <icon-button v-if="isCenterIcon" :data="data.center"></icon-button>

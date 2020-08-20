@@ -10,7 +10,7 @@
       <div>{{data.use || data.origin}}</div>
     </div>
     <div class="detail-bar-note h-row-center">
-      <span>{{data.note}}</span>
+      <span>{{data.note || '.'}}</span>
     </div>
   </div>
 </template>
@@ -54,7 +54,6 @@ export default {
   min-height: 25%;
   font-size: 0.5rem;
   padding: 0 12px;
-  
 }
 
 .detail-bar-note {

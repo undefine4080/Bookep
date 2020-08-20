@@ -3,23 +3,23 @@
     <option-bar :data="optBarData" class="base-color"></option-bar>
 
     <div class="view-content wh-col-center">
-        <div class="main-btns outer-shadow radiu">
-            <div class="main-btn theme-color">
+        <div class="main-btns outer-shadow radiu gap">
+            <div class="main-btn theme-color point">
                 <router-link class="route-a" to="/record/payment">支出</router-link>
             </div>
-            <div class="main-btn theme-color">
+            <div class="main-btn theme-color point">
                 <router-link class="route-a" to="/record/income">收入</router-link>
             </div>
         </div>
 
-        <div class="option-btns outer-shadow radiu">
-            <div class="option-btn theme-color">
+        <div class="option-btns outer-shadow radiu gap">
+            <div class="option-btn theme-color point">
                 <router-link class="route-a" to="/balance">余额</router-link>
             </div>
-            <div class="option-btn theme-color">
+            <div class="option-btn theme-color point">
                 <router-link class="route-a" to="/detail/time">明细</router-link>
             </div>
-            <div class="option-btn theme-color">
+            <div class="option-btn theme-color point">
                 <router-link class="route-a" to="/statistic">统计</router-link>
             </div>
         </div>
@@ -58,7 +58,7 @@ export default {
 .main-btns {
     width: 55%;
     height: 55%;
-    background-color: rgb(245, 245, 245);
+    // background-color: rgb(245, 245, 245);
     margin-bottom: 10%;
 }
 
@@ -80,7 +80,7 @@ export default {
 .option-btns {
     width: 55%;
     height: 6%;
-    background-color: rgb(245, 245, 245);
+    // background-color: rgb(245, 245, 245);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }

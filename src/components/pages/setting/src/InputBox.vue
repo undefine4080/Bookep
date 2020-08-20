@@ -1,6 +1,6 @@
 <template>
-<div class="input-box radiu theme-color outer-shadow font" @click="silence">
-    <div class="input-title down-shadow theme-color wh-row-center">
+<div class="input-box radiu base-color outer-shadow font" @click="silence">
+    <div class="input-title down-shadow base-color wh-row-center">
         <span v-if="data.flag == 'v'">输入您定义的额度</span>
         <span v-else>输入新{{data.target}}的名称</span>
     </div>
@@ -8,9 +8,9 @@
     <div class="input-content wh-row-center">
         <input :type="InputType" class="setting-input inner-shadow" v-model="inputText" />
     </div>
-    <div class="input-btns wh-row-center up-shadow">
-        <div class="input-btn wh-row-center point theme-color" @click="closeinput">取消</div>
-        <div class="input-btn wh-row-center point theme-color" @click="confirm(data,inputText)">确认</div>
+    <div class="input-btns wh-row-center up-shadow gap">
+        <div class="input-btn wh-row-center point base-color" @click="closeinput">取消</div>
+        <div class="input-btn wh-row-center point base-color" @click="confirm(data,inputText)">确认</div>
     </div>
 </div>
 </template>
@@ -79,7 +79,6 @@ export default {
     width: 100%;
     height: 15%;
     border-radius: 0 0 15px 15px;
-    background-color: rgb(241, 241, 241);
 }
 
 .input-btn {

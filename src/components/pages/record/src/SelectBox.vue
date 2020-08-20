@@ -1,11 +1,19 @@
 <template>
-<div class="select-box base-color radiu">
+  <div class="select-box base-color radiu">
     <div class="select-title select-bar down-shadow wh-row-center base-color">{{selectBoxTitle}}</div>
     <div class="select-area">
-        <div class="select-item wh-row-center base-color point" v-for="(item, index) in data.dataSource" :key="index" @click.stop="commitData(item)">{{item}}</div>
+      <div
+        class="select-item wh-row-center base-color point"
+        v-for="(item, index) in data.dataSource"
+        :key="index"
+        @click.stop="commitData(item)"
+      >{{item}}</div>
     </div>
-    <div class="select-btn select-bar up-shadow wh-row-center point" @click="$store.commit('closePopBox')">取消</div>
-</div>
+    <div
+      class="select-btn select-bar up-shadow wh-row-center point"
+      @click="$store.commit('closePopBox')"
+    >取消</div>
+  </div>
 </template>
 
 <script>
@@ -42,36 +50,39 @@ export default {
 
 <style lang="scss">
 .select-box {
-    width: 60%;
-    height: 45%;
+  width: 60%;
+  height: 45%;
 }
 
 .select-bar {
-    height: 10%;
-    width: 100%;
+  height: 10%;
+  width: 100%;
 }
 
 .select-title {
-    border-radius: 15px 15px 0 0;
-    position: relative;
-    z-index: 100;
+  border-radius: 15px 15px 0 0;
+  position: relative;
+  z-index: 100;
 }
 
 .select-btn {
-    width: 100%;
-    border-radius: 0 0 15px 15px;
+  width: 100%;
+  border-radius: 0 0 15px 15px;
 }
 
 .select-area {
-    width: 100%;
-    height: 80%;
-    overflow-y: auto;
-    
+  width: 100%;
+  height: 80%;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.select-area::-webkit-scrollbar {
+  width: 0;
 }
 
 .select-item {
-    width: 100%;
-    height: 15%;
-    border-bottom: 1px solid rgb(235, 235, 235);
+  width: 100%;
+  height: 15%;
 }
 </style>

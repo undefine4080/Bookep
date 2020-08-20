@@ -1,6 +1,6 @@
 <template>
   <div class="in-account page w-row-center">
-    <div class="inaccount-nav theme-color outer-shadow">
+    <div class="inaccount-nav base-color outer-shadow">
       <div class="inaccount-nav-item wh-row-center point" v-for="(item, index) in inAccountData" :key="index" @click="setCurAccount(index)">{{item.title}}</div>
     </div>
     <div class="inaccount-content">

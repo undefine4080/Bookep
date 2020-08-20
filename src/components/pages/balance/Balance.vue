@@ -4,7 +4,6 @@
     <div class="balance-cards view-content">
       <div class="balance-card outer-shadow radiu theme-color" v-for="(item, index) in getBalanceData" :key="index">
         <div class="balance-card-item wh-row-center">{{item.account}}</div>
-        <!-- <div class="balance-card-item wh-row-center">{{}}</div> -->
         <div class="balance-card-item wh-row-center">{{item.volume}}</div>
       </div>
     </div>
@@ -49,7 +48,7 @@ export default {
   margin: 3%;
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .balance-card-item {

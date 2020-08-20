@@ -17,6 +17,10 @@
     background-color: #eef7f2;
 }
 
+.gap{
+    background-color: rgb(226, 226, 226);
+}
+
 .font {
     font-family: 'hanyi';
     font-weight: bold;
@@ -40,4 +44,13 @@
 
 .radiu {
     border-radius: 15px;
+}
+
+.point {
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.point:hover{
+    background-color: rgb(212, 212, 212);
 }

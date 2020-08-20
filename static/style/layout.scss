@@ -28,15 +28,6 @@
     }
 }
 
-.point {
-    cursor: pointer;
-    transition: all .3s;
-
-    &:hover {
-        background-color: rgb(238, 238, 238);
-    }
-}
-
 .three-col {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

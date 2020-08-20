@@ -3,7 +3,7 @@
     <div class="menu-title h-row-center" @click="openMenuItems" :class="{'menu-title-open':menuItemsActive}">{{data.title}}</div>
     <transition name="fade">
         <div class="menu-items theme-color" v-if="isMenuItemsOpen">
-            <div class="menu-item mark three-col point" v-for="(menuItem, index) in data.menuItem" :key="index">
+            <div class="menu-item three-col point base-color" v-for="(menuItem, index) in data.menuItem" :key="index">
                 <div>{{menuItem.account || menuItem}}</div>
 
                 <div v-if="data.type === 'M'">{{menuItem.volume}}</div>
@@ -102,7 +102,7 @@ export default {
 
 .menu-title {
     width: 100%;
-    height: 40px;
+    height: 60px;
     text-indent: 20px;
 }
 

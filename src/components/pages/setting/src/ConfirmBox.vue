@@ -5,7 +5,7 @@
         <slot> 删除
         <span style="color: rgb(224, 85, 85)">{{data.target}}</span>？</slot>
     </div>
-    <div class="confirm-btns wh-row-center up-shadow">
+    <div class="confirm-btns wh-row-center up-shadow gap">
         <div class="confirm-btn wh-row-center point theme-color" @click="closeConfirm">取消</div>
         <div class="confirm-btn wh-row-center point theme-color" @click="confirm(data)">确认</div>
     </div>
@@ -51,13 +51,13 @@ export default {
     height: 70%;
     padding: 10%;
     box-sizing: border-box;
+    font-size: 1.5rem;
 }
 
 .confirm-btns {
     width: 100%;
     height: 15%;
     border-radius: 0 0 15px 15px;
-    background-color: rgb(241, 241, 241);
 }
 
 .confirm-btn {

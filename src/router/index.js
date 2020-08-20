@@ -7,6 +7,7 @@ import Balance from '@/components/pages/balance/Balance.vue'
 import Detail from '@/components/pages/detail/Detail.vue'
 import Setting from '@/components/pages/setting/Setting.vue'
 import Statistic from '@/components/pages/statistic/Statistic.vue'
+import Theme from '@/components/pages/theme/Theme.vue'
 
 import InAccount from '@/components/pages/detail/src/InAccount.vue'
 import InSequence from '@/components/pages/detail/src/InSequence.vue'
@@ -55,5 +56,8 @@ export default new Router({
     }, {
         path: '/statistic',
         component: Statistic,
+    },{
+        path: '/theme',
+        component: Theme,
     }]
 })

@@ -1,5 +1,5 @@
 <template>
-<div class="card radiu w-row-center outer-shadow" @click="openPopBox">
+<div class="card radiu w-row-center outer-shadow gap" @click="openPopBox">
     <div class="card-title theme-color wh-col-center">{{title}}</div>
     <div class="card-btn theme-color wh-row-center">{{cardContent}}</div>
 </div>
@@ -51,7 +51,7 @@ export default {
 .card {
     width: 70%;
     height: 16%;
-    background-color: rgb(240, 240, 240);
+    // background-color: rgb(240, 240, 240);
 }
 
 .card-title {
