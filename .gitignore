@@ -5,10 +5,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 /test/unit/coverage/
+note.txt
 
 # Editor directories and files
 .idea
 .vscode
+.txt
 *.suo
 *.ntvs*
 *.njsproj

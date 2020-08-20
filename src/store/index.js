@@ -153,7 +153,7 @@ export default new Vuex.Store({
         },
         getGlobalRecordData(state) {
             state.globalDB = DB.read('record')
-            console.log('读取全局数据')
+            console.log('读取record数据')
         },
         initBaseData(state) {
             const wayData = {
@@ -213,8 +213,7 @@ export default new Vuex.Store({
                 }
                 state.account = caculateAccount()
             }
-            console.log("从 localstorage 读取基础数据")
-            // console.log(state.way,state.account,state.balance)
+            console.log("载入基础数据")
         }
     },
     getters: {
@@ -261,6 +260,8 @@ export default new Vuex.Store({
         getBalanceData(state, getters) {
             let [...raw] = getters.inAccountData
 
+            let balanceData = JSON.parse(localStorage.getItem('balance'))
+
             let data = []
 
             for (let i = 0; i < raw.length; i++) {
@@ -272,15 +273,16 @@ export default new Vuex.Store({
                     let total = raw[i].data.reduce((pre, next) => {
                         return parseFloat(pre.amount) + parseFloat(next.amount)
                     })
-                    temp.volume = 0 + total
+                    temp.volume = balanceData[i].volume + total
                 } else if (raw[i].data.length == 1) {
-                    temp.volume = 0 + raw[i].data[0].amount
+                    temp.volume = balanceData[0].volume + raw[i].data[0].amount
                 } else {
                     temp.volume = 0
                 }
                 data.push(temp)
             }
-            localStorage.setItem('balance', JSON.stringify(data))
+
+            console.log("获取账户余额数据")
             return data
         }
     }
