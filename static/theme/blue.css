@@ -1,0 +1,52 @@
+.theme-color {
+    color: rgb(255, 255, 255); 
+    background-color: #bde1eb
+    /* background: radial-gradient(rgb(253, 226, 226), rgb(248, 220, 220)); */
+}
+
+.base-color {
+    color: rgb(255, 255, 255);
+    background-color: #9cd8e9;
+}
+
+.mark{
+    color: rgb(146, 146, 146);
+    background-color: #ffffff;
+}
+
+.gap{
+    background-color: rgb(158, 193, 233);
+}
+
+.font {
+    font-weight: bold;
+}
+
+.outer-shadow {
+    box-shadow: rgb(132, 191, 218) 0 0 15px;
+}
+
+.inner-shadow {
+    box-shadow: rgb(150, 190, 216) 0 0 5px inset;
+}
+
+.down-shadow {
+    box-shadow: rgb(87, 157, 204) 0 3px 3px;
+}
+
+.up-shadow {
+    box-shadow: rgb(120, 205, 226) 0 -3px 3px;
+}
+
+.radiu {
+    border-radius: 15px;
+}
+
+.point {
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.point:hover{
+    background-color: rgb(112, 185, 214);
+}

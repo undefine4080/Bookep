@@ -1,0 +1,52 @@
+.theme-color {
+    color: rgb(255, 255, 255); 
+    background-color: rgb(248, 215, 215);
+    /* background: radial-gradient(rgb(253, 226, 226), rgb(248, 220, 220)); */
+}
+
+.base-color {
+    color: rgb(255, 255, 255);
+    background-color: rgb(248, 202, 202);
+}
+
+.mark{
+    color: rgb(146, 146, 146);
+    background-color: #ffffff;
+}
+
+.gap{
+    background-color: rgb(226, 198, 198);
+}
+
+.font {
+    font-weight: bold;
+}
+
+.outer-shadow {
+    box-shadow: rgb(252, 166, 166) 0 0 15px;
+}
+
+.inner-shadow {
+    box-shadow: rgb(216, 150, 150) 0 0 5px inset;
+}
+
+.down-shadow {
+    box-shadow: rgb(252, 195, 195) 0 3px 3px;
+}
+
+.up-shadow {
+    box-shadow: rgb(216, 135, 135) 0 -3px 3px;
+}
+
+.radiu {
+    border-radius: 15px;
+}
+
+.point {
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.point:hover{
+    background-color: rgb(248, 159, 159);
+}

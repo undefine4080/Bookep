@@ -1,6 +1,6 @@
 <template>
   <div class="select-box base-color radiu">
-    <div class="select-title select-bar down-shadow wh-row-center base-color">{{selectBoxTitle}}</div>
+    <div class="select-title select-bar down-shadow wh-row-center theme-color">{{selectBoxTitle}}</div>
     <div class="select-area">
       <div
         class="select-item wh-row-center base-color point"
@@ -10,7 +10,7 @@
       >{{item}}</div>
     </div>
     <div
-      class="select-btn select-bar up-shadow wh-row-center point"
+      class="select-btn select-bar up-shadow wh-row-center point theme-color"
       @click="$store.commit('closePopBox')"
     >取消</div>
   </div>
@@ -75,10 +75,10 @@ export default {
   height: 80%;
   overflow-y: auto;
   box-sizing: border-box;
-}
-
-.select-area::-webkit-scrollbar {
-  width: 0;
+  scrollbar-width: none;
+  &::-webkit-scrollbar{
+    width: 0;
+  }
 }
 
 .select-item {
