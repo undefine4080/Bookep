@@ -3,7 +3,7 @@
     <option-bar
       :data="optBarData"
       :isSetAmount="setAmount"
-      class="down-shadow theme-color"
+      class="down-shadow"
       @confirm="addRecord"
     ></option-bar>
 
@@ -19,14 +19,19 @@
       <note ref="noteComp"></note>
     </div>
 
-    <pop-box
-      v-if="recordPageData.popBoxOpenFlag"
-      @handle="closePopBox"
-      :class="{'wh-row-center': recordPageData.selectBoxFlag.openFlag, 'h-row-bottom': recordPageData.keyBoardOpenFlag}"
-    >
-      <select-box v-if="recordPageData.selectBoxFlag.openFlag" :data="recordPageData.selectBoxFlag"></select-box>
-      <key-board v-if="recordPageData.keyBoardOpenFlag"></key-board>
-    </pop-box>
+    <transition name="fade">
+      <pop-box
+        v-if="recordPageData.popBoxOpenFlag"
+        @handle="closePopBox"
+        :class="{'wh-row-center': recordPageData.selectBoxFlag.openFlag, 'h-row-bottom': recordPageData.keyBoardOpenFlag}"
+      >
+        <select-box
+          v-if="recordPageData.selectBoxFlag.openFlag"
+          :data="recordPageData.selectBoxFlag"
+        ></select-box>
+        <key-board v-if="recordPageData.keyBoardOpenFlag"></key-board>
+      </pop-box>
+    </transition>
   </div>
 </template>
 
@@ -139,6 +144,9 @@ export default {
         } else {
             this.$store.commit('resetRecordView', false)
         }
+    },
+    beforeCreate(){
+        this.$store.commit('initBaseData')
     }
 }
 </script>

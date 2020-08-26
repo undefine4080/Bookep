@@ -105,7 +105,7 @@ export default new Vuex.Store({
             }
         },
         resetRecordView(state, flag) {
-            if(flag == true){
+            if (flag == true) {
                 state.curRecordData = {
                     amount: '0',
                     origin: null,
@@ -114,7 +114,7 @@ export default new Vuex.Store({
                     note: ' ',
                     time: null
                 }
-            }else{
+            } else {
                 state.curRecordData = {
                     amount: '0',
                     origin: state.way.origin[0],
@@ -142,7 +142,7 @@ export default new Vuex.Store({
                     target: flag.target,
                     flag: flag.flag
                 }
-            }else if(flag.type === 'confirm'){
+            } else if (flag.type === 'confirm') {
                 i.inputBoxOpenFlag = false
                 i.confirmBoxOpenFlag = true
                 i.dataForPopBox = {
@@ -195,16 +195,16 @@ export default new Vuex.Store({
             if (!localStorage.getItem('way')) {
                 localStorage.setItem('way', JSON.stringify(wayData))
                 state.way = wayData
-            }else{
+            } else {
                 state.way = JSON.parse(localStorage.getItem('way'))
             }
 
             if (!localStorage.getItem('balance')) {
                 localStorage.setItem('balance', JSON.stringify(balanceData))
                 state.account = temp
-            }else{
+            } else {
                 state.balance = JSON.parse(localStorage.getItem('balance'))
-                function caculateAccount(){
+                function caculateAccount() {
                     let temp = []
                     state.balance.forEach(item => {
                         temp.push(item.account)

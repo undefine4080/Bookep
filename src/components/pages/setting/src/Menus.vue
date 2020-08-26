@@ -1,6 +1,6 @@
 <template>
 <div class="menu radiu theme-color font outer-shadow">
-    <div class="menu-title h-row-center" @click="openMenuItems" :class="{'menu-title-open':menuItemsActive}">{{data.title}}</div>
+    <div class="menu-title h-row-center" @click="openMenuItems" :class="{'menu-title-open':menuItemsActive, 'mark': menuItemsActive}">{{data.title}}</div>
     <transition name="fade">
         <div class="menu-items theme-color" v-if="isMenuItemsOpen">
             <div class="menu-item three-col point base-color" v-for="(menuItem, index) in data.menuItem" :key="index">
@@ -104,10 +104,11 @@ export default {
     width: 100%;
     height: 60px;
     text-indent: 20px;
+    transition: all .3s;
 }
 
 .menu-title-open {
-    border-radius: 15px 15px 0 0;
+    border-radius: 15px 15px 0 0; 
 }
 
 .menu-items {
@@ -121,7 +122,6 @@ export default {
 .menu-item {
     width: 100%;
     height: 40px;
-    border-bottom: 1px solid rgb(236, 236, 236);
 
     &:last-child {
         border-radius: 0 0 15px 15px;

@@ -1,6 +1,10 @@
+.context {
+    background-color: #1b2021;
+}
+
 .theme-color {
     color: rgb(255, 255, 255); 
-    background-color: rgb(80, 80, 80);
+    background-color: #1b2021;
 }
 
 .base-color {

@@ -13,7 +13,6 @@ export default {
     name: 'Theme',
     methods: {
         setTheme(theme) {
-            console.log(theme)
             const links = Array.from(document.getElementsByTagName('link'))
 
             links.forEach(link => {
@@ -24,6 +23,8 @@ export default {
                 }
             })
 
+            localStorage.setItem('theme', theme)
+
             this.$router.push('/main')
         }
     }
@@ -31,6 +32,10 @@ export default {
 </script>
 
 <style lang="scss">
+.theme{
+    background: white;
+}
+
 .theme-pick {
     width: 60%;
     min-height: 10%;

@@ -1,11 +1,13 @@
 <template>
-<div class="detail page font">
+  <div class="detail page font">
     <option-bar :data="topOptBarData" class="down-shadow"></option-bar>
     <div class="detail-area option-content base-color">
+      <transition>
         <router-view></router-view>
+      </transition>
     </div>
     <option-bar :data="bottomOptBarData" class="up-shadow"></option-bar>
-</div>
+  </div>
 </template>
 
 <script>
@@ -45,6 +47,9 @@ export default {
                 }
             }
         }
+    },
+    beforeCreate(){
+this.$store.commit('initBaseData')
     },
     beforeMount() {
         this.$store.commit('getGlobalRecordData')

@@ -5,7 +5,7 @@
 
 .base-color {
     color: rgb(80, 80, 80);
-    background: repeating-linear-gradient(45deg, #ffffff 20px, #fafafa 20px, #ffffff 20px, #fafafa 20px, #ffffff 30px);
+    background: rgb(255, 255, 255);
 }
 
 .mark{
@@ -17,7 +17,6 @@
 }
 
 .font {
-    font-family: 'hanyi';
     font-weight: bold;
 }
 

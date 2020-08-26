@@ -1,11 +1,14 @@
+.context {
+    background-color: #8edff5;
+}
+
 .theme-color {
-    color: rgb(255, 255, 255); 
-    background-color: #bde1eb
-    /* background: radial-gradient(rgb(253, 226, 226), rgb(248, 220, 220)); */
+    color: rgb(80, 80, 80);
+    background-color: #8edff5;
 }
 
 .base-color {
-    color: rgb(255, 255, 255);
+    color: rgb(80, 80, 80);
     background-color: #9cd8e9;
 }
 
@@ -15,7 +18,7 @@
 }
 
 .gap{
-    background-color: rgb(158, 193, 233);
+    background-color: rgb(141, 209, 226);
 }
 
 .font {
@@ -31,7 +34,7 @@
 }
 
 .down-shadow {
-    box-shadow: rgb(87, 157, 204) 0 3px 3px;
+    box-shadow: rgb(120, 205, 226) 0 3px 3px;
 }
 
 .up-shadow {

@@ -1,6 +1,6 @@
 <template>
-<div id="app" class="page">
-    <transition name="fade">
+<div id="app" class="page context">
+    <transition name="pop">
         <router-view />
     </transition>
 </div>
@@ -11,16 +11,20 @@ import DB from '../src/api/db.js'
 
 export default {
     name: 'App',
-    beforeCreate(){
-        const links = document.getElementsByTagName('link')
-        console.log(links)
+    beforeCreate() {
+        const lastTheme = localStorage.getItem('theme')
 
-        let curTheme = ""
-
-        if(!localStorage.getItem('theme')){
-            localStorage.setItem('theme', "white")
-        }else{
-            curTheme = localStorage.getItem('theme')
+        if (lastTheme) {
+            const links = Array.from(document.getElementsByTagName('link'))
+            links.forEach(link => {
+                if (link.dataset.id == lastTheme) {
+                    link.removeAttribute('disabled')
+                } else {
+                    link.setAttribute('disabled', true)
+                }
+            })
+        } else {
+            localStorage.setItem('theme', 'white')
         }
     },
     mounted() {

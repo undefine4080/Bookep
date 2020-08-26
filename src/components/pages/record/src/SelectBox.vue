@@ -68,6 +68,8 @@ export default {
 .select-btn {
   width: 100%;
   border-radius: 0 0 15px 15px;
+  position: relative;
+  z-index: 999
 }
 
 .select-area {

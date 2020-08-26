@@ -1,11 +1,14 @@
-.theme-color {
-    color: rgb(255, 255, 255); 
+.context {
     background-color: rgb(248, 215, 215);
-    /* background: radial-gradient(rgb(253, 226, 226), rgb(248, 220, 220)); */
+}
+
+.theme-color {
+    color: rgb(80, 80, 80);
+    background-color: rgb(248, 215, 215);
 }
 
 .base-color {
-    color: rgb(255, 255, 255);
+    color: rgb(80, 80, 80);
     background-color: rgb(248, 202, 202);
 }
 

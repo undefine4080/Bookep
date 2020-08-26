@@ -1,11 +1,14 @@
+.context {
+    background-color: #fcd98d;
+}
+
 .theme-color {
     color: rgb(80, 80, 80); 
     background-color: #fcd98d;
-    /* background: radial-gradient(rgb(253, 226, 226), rgb(248, 220, 220)); */
 }
 
 .base-color {
-    color: rgb(255, 255, 255);
+    color: rgb(80, 80, 80); 
     background-color: #F9D27D;
 }
 

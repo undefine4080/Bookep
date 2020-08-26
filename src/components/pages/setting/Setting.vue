@@ -1,19 +1,29 @@
 <template>
-<div class="settings page">
+  <div class="settings page">
     <option-bar :data="optBarData" class="down-shadow theme-color"></option-bar>
     <div class="view-content base-color">
-        <menus :data="menuData.settingAccount"></menus>
-        <menus :data="menuData.volumeAccount"></menus>
-        <menus :data="menuData.useCategories"></menus>
-        <menus :data="menuData.originCategories"></menus>
-        <div id="clearData" class="outer-shadow wh-row-center">清除所有数据</div>
+      <menus :data="menuData.settingAccount"></menus>
+      <menus :data="menuData.volumeAccount"></menus>
+      <menus :data="menuData.useCategories"></menus>
+      <menus :data="menuData.originCategories"></menus>
+      <div id="clearData" class="outer-shadow wh-row-center">清除所有数据</div>
     </div>
 
-    <pop-box v-if="settingPageData.popBoxOpenFlag" class="wh-row-center" @handle="closePopBox">
-        <confirm-box v-if="settingPageData.confirmBoxOpenFlag" :data="settingPageData.dataForPopBox" @handle="confirmToDelete"></confirm-box>
-        <input-box v-if="settingPageData.inputBoxOpenFlag" :data="settingPageData.dataForPopBox" @handle="confirmToModify"></input-box>
-    </pop-box>
-</div>
+    <transition name="fade">
+      <pop-box v-if="settingPageData.popBoxOpenFlag" class="wh-row-center" @handle="closePopBox">
+        <confirm-box
+          v-if="settingPageData.confirmBoxOpenFlag"
+          :data="settingPageData.dataForPopBox"
+          @handle="confirmToDelete"
+        ></confirm-box>
+        <input-box
+          v-if="settingPageData.inputBoxOpenFlag"
+          :data="settingPageData.dataForPopBox"
+          @handle="confirmToModify"
+        ></input-box>
+      </pop-box>
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -163,19 +173,19 @@ export default {
 
 <style lang="scss">
 #clearData {
-    width: 90%;
-    margin: 5%;
-    height: 40px;
-    box-sizing: border-box;
-    background-color: rgb(224, 85, 85);
-    color: white;
-    text-shadow: wheat 0 0 2px;
-    border-radius: 10px;
-    transition: all 0.5s;
-    letter-spacing: 3px;
+  width: 90%;
+  margin: 5%;
+  height: 40px;
+  box-sizing: border-box;
+  background-color: rgb(224, 85, 85);
+  color: white;
+  text-shadow: wheat 0 0 2px;
+  border-radius: 10px;
+  transition: all 0.5s;
+  letter-spacing: 3px;
 
-    &:hover {
-        transform: scale(1.05);
-    }
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 </style>
