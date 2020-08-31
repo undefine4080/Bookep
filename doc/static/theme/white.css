@@ -1,0 +1,50 @@
+.theme-color {
+    color: rgb(80, 80, 80); 
+    background: rgb(255, 255, 255);
+}
+
+.base-color {
+    color: rgb(80, 80, 80);
+    background: rgb(255, 255, 255);
+}
+
+.mark{
+    background-color: #eef7f2;
+}
+
+.gap{
+    background-color: rgb(226, 226, 226);
+}
+
+.font {
+    font-weight: bold;
+}
+
+.outer-shadow {
+    box-shadow: rgb(210, 210, 210) 0 0 10px;
+}
+
+.inner-shadow {
+    box-shadow: rgb(230, 230, 230) 0 0 5px inset;
+}
+
+.down-shadow {
+    box-shadow: rgb(230, 230, 230) 0 3px 3px;
+}
+
+.up-shadow {
+    box-shadow: rgb(230, 230, 230) 0 -3px 3px;
+}
+
+.radiu {
+    border-radius: 15px;
+}
+
+.point {
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.point:hover{
+    background-color: rgb(212, 212, 212);
+}

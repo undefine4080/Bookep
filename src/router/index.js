@@ -15,7 +15,6 @@ import InSequence from '@/components/pages/detail/src/InSequence.vue'
 Vue.use(Router)
 
 export default new Router({
-    mode: 'history',
     routes: [{
         path: '/',
         component: Main
