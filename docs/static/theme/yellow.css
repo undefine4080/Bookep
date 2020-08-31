@@ -1,0 +1,55 @@
+.context {
+    background-color: #fcd98d;
+}
+
+.theme-color {
+    color: rgb(80, 80, 80); 
+    background-color: #fcd98d;
+}
+
+.base-color {
+    color: rgb(80, 80, 80); 
+    background-color: #F9D27D;
+}
+
+.mark{
+    color: rgb(146, 146, 146);
+    background-color: #ffffff;
+}
+
+.gap{
+    background-color: #dab76e;
+}
+
+.font {
+    font-weight: bold;
+}
+
+.outer-shadow {
+    box-shadow: #e6bc64 0 0 15px;
+}
+
+.inner-shadow {
+    box-shadow: #e6bc64 0 0 5px inset;
+}
+
+.down-shadow {
+    box-shadow: #e6bc64 0 3px 3px;
+}
+
+.up-shadow {
+    box-shadow: #e6bc64 0 -3px 3px;
+}
+
+.radiu {
+    border-radius: 15px;
+}
+
+.point {
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.point:hover{
+    background-color: #e6bc64;
+}
